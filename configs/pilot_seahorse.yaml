@@ -1,0 +1,32 @@
+name: pilot_seahorse_candidate_quality
+seed: 7
+
+paths:
+  seahorse_raw_dir: data/raw/seahorse/seahorse_data
+  items_jsonl: data/processed/pilot_items.jsonl
+  prompts_jsonl: data/prompts/pilot_prompts.jsonl
+  responses_jsonl: data/responses/pilot_openai_responses.jsonl
+  metrics_csv: data/analysis/pilot_metrics.csv
+  shifts_csv: data/analysis/pilot_protocol_shifts.csv
+  summary_md: data/analysis/pilot_summary.md
+  heatmap_png: paper/figures/pilot_protocol_heatmap.png
+  shift_png: paper/figures/pilot_protocol_shifts.png
+
+dataset:
+  split: test
+  languages: ["en-US", "es-ES", "tr", "vi"]
+  dimensions: ["comprehensibility", "grammar"]
+  samples_per_language_dimension: 6
+  max_summary_chars: 900
+
+protocols:
+  - P0_direct_english
+  - P1_target_rubric
+  - P2_pivot_in_prompt
+  - P3_bilingual
+
+judge:
+  model: gpt-4o-mini
+  max_output_tokens: 120
+  temperature: 0
+  request_limit: 192

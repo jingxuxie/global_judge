@@ -1,0 +1,9 @@
+judge_model,dimension,protocol,protocol_name,n_languages,mean_spearman,min_spearman,min_spearman_language,max_spearman,max_spearman_language,spearman_language_gap,mean_auroc,min_auroc,min_auroc_language,max_auroc,max_auroc_language,auroc_language_gap
+gpt-4o-mini,comprehensibility,P0_direct_english,Direct English rubric,4,0.5838801397724167,0.3491139942160784,vi,0.7311803351978154,en-US,0.38206634098173703,0.8251999999999999,0.6904,vi,0.9104,en-US,0.21999999999999997
+gpt-4o-mini,comprehensibility,P1_target_rubric,Target-language rubric,4,0.502006695863342,0.1643773847266872,vi,0.69926316763428,en-US,0.5348857829075928,0.777,0.5896,vi,0.8808,en-US,0.2912
+gpt-4o-mini,comprehensibility,P2_explicit_pivot,Explicit English pivot,4,0.4135971952664758,0.0855464128311924,vi,0.7108164571789763,en-US,0.625270044347784,0.7312,0.548,vi,0.8976,en-US,0.3495999999999999
+gpt-4o-mini,comprehensibility,P3_bilingual,Bilingual rubric,4,0.559354637482844,0.3993535043999364,vi,0.7014144518331283,en-US,0.30206094743319195,0.8088,0.7136,vi,0.8904,en-US,0.17679999999999996
+gpt-4o-mini,grammar,P0_direct_english,Direct English rubric,4,0.18140035202179053,-0.0216129578267689,tr,0.3274330871068557,en-US,0.3490460449336246,0.5986,0.488,tr,0.6808,en-US,0.19279999999999997
+gpt-4o-mini,grammar,P1_target_rubric,Target-language rubric,4,0.1744719930057279,-0.0883593160138124,tr,0.3663908641577019,en-US,0.4547501801715143,0.5896,0.4536,tr,0.692,en-US,0.23839999999999995
+gpt-4o-mini,grammar,P2_explicit_pivot,Explicit English pivot,4,0.1483482805595051,-0.0756969454351321,tr,0.364526771145889,en-US,0.4402237165810211,0.578,0.4584,tr,0.6832,en-US,0.22480000000000006
+gpt-4o-mini,grammar,P3_bilingual,Bilingual rubric,4,0.15158866109994698,-0.0715065201463154,tr,0.3849198167230708,en-US,0.45642633686938616,0.5828,0.4616,tr,0.7112,en-US,0.24960000000000004

@@ -1,0 +1,39 @@
+name: candidate_quality_n50_combined_explicit
+seed: 41
+
+paths:
+  seahorse_raw_dir: data/raw/seahorse/seahorse_data
+  items_jsonl: data/processed/candidate_n50_items.jsonl
+  prompts_jsonl: data/prompts/candidate_n50_combined_explicit_prompts.jsonl
+  responses_jsonl: data/responses/candidate_n50_combined_explicit_responses.jsonl
+  metrics_csv: data/analysis/candidate_n50_combined_explicit_metrics.csv
+  shifts_csv: data/analysis/candidate_n50_combined_explicit_protocol_shifts.csv
+  calibration_csv: data/analysis/candidate_n50_combined_explicit_calibration.csv
+  calibration_summary_md: data/analysis/candidate_n50_combined_explicit_calibration_summary.md
+  summary_md: data/analysis/candidate_n50_combined_explicit_summary.md
+  heatmap_png: paper/figures/candidate_n50_combined_explicit_heatmap.png
+  shift_png: paper/figures/candidate_n50_combined_explicit_shifts.png
+
+dataset:
+  split: test
+  languages: ["en-US", "es-ES", "tr", "vi"]
+  dimensions: ["comprehensibility", "grammar"]
+  samples_per_language_dimension: 50
+  max_summary_chars: 900
+
+protocols:
+  - P0_direct_english
+  - P1_target_rubric
+  - P2_explicit_pivot
+  - P3_bilingual
+
+judge:
+  model: gpt-4o-mini
+  max_output_tokens: 120
+  temperature: 0
+  request_limit: 1600
+
+calibration:
+  fraction: 0.3
+  baseline_threshold: 4
+  threshold_candidates: [2, 3, 4, 5]

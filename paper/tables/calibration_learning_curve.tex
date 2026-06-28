@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\caption{Repeated threshold-calibration learning curve. Entries are mean held-out balanced-accuracy deltas over repeated stratified calibration samples.}
+\label{tab:calibration_learning_curve}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lllllll}
+\toprule
+Run & $n_{cal}=2$ & $n_{cal}=8$ & Largest $n_{cal}$ & Largest $\Delta$ & P(improve) & P(degrade) \\
+\midrule
+candidate n50 & -0.054 & -0.022 & 24 & -0.009 & 0.198 & 0.331 \\
+semantic n30 & 0.127 & 0.120 & 24 & 0.136 & 0.612 & 0.112 \\
+wmt reference n30 & -0.067 & -0.047 & 24 & -0.041 & 0.000 & 0.180 \\
+wmt ref-free n30 & 0.013 & 0.055 & 24 & 0.076 & 0.404 & 0.136 \\
+candidate audit n25 & -0.066 & -0.032 & 16 & -0.024 & 0.232 & 0.351 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

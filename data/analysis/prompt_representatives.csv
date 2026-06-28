@@ -1,0 +1,690 @@
+run,protocol,language,dimension,judge_model,system,user_template
+candidate n50,P0_direct_english,es-ES,comprehensibility,gpt-4o-mini,You are a careful evaluator. Return valid JSON only.,"Task: summarization quality evaluation
+Language of candidate summary: Spanish
+
+Evaluation dimension: Comprehensibility
+Rubric:
+1 = very poor
+2 = poor
+3 = acceptable
+4 = good
+5 = excellent
+
+Question:
+Is the summary easy to understand as written?
+
+Candidate summary:
+<item text redacted>
+
+Judge only the candidate summary. Do not infer facts from an unavailable source article.
+
+Return JSON only:
+{
+  ""score"": integer from 1 to 5,
+  ""label"": ""bad"" | ""borderline"" | ""good"",
+  ""confidence"": number from 0 to 1,
+  ""rationale_brief"": string of at most 18 words
+}"
+candidate n50,P1_target_rubric,es-ES,comprehensibility,gpt-4o-mini,Eres un evaluador cuidadoso. Devuelve solo JSON valido.,"Tarea: evaluacion de la calidad de un resumen
+Dimension de evaluacion: Comprehensibility
+
+Pregunta:
+El resumen es facil de entender tal como esta escrito?
+
+Rubrica:
+1 = muy deficiente
+2 = deficiente
+3 = aceptable
+4 = bueno
+5 = excelente
+
+Resumen candidato:
+<item text redacted>
+
+Devuelve solo JSON con las claves score, label, confidence, rationale_brief. Usa label bad, borderline o good."
+candidate n50,P3_bilingual,es-ES,comprehensibility,gpt-4o-mini,You are a careful bilingual evaluator. Return valid JSON only.,"Task / Task in target language: summarization quality evaluation / Tarea: evaluacion de la calidad de un resumen
+Language / Target language: Spanish / es-ES
+
+Evaluation dimension / Dimension de evaluacion:
+Comprehensibility
+
+Question:
+Is the summary easy to understand as written?
+Pregunta:
+El resumen es facil de entender tal como esta escrito?
+
+Rubric:
+1 = very poor
+2 = poor
+3 = acceptable
+4 = good
+5 = excellent
+
+Rubrica:
+1 = muy deficiente
+2 = deficiente
+3 = aceptable
+4 = bueno
+5 = excelente
+
+Candidate summary / Resumen candidato:
+<item text redacted>
+
+Return JSON only:
+{
+  ""score"": integer from 1 to 5,
+  ""label"": ""bad"" | ""borderline"" | ""good"",
+  ""confidence"": number from 0 to 1,
+  ""rationale_brief"": string of at most 18 words
+}"
+candidate n50,P2_explicit_pivot,es-ES,comprehensibility,gpt-4o-mini,You are a careful evaluator. Return valid JSON only.,"Task: summarization quality evaluation through an explicit English pivot
+Original language of candidate summary: Spanish
+
+The source and candidate summary have been translated into English for evaluation when a source is available.
+
+Evaluation dimension: Comprehensibility
+Question:
+Is the summary easy to understand as written?
+
+Important:
+For grammar, fluency, or language-form dimensions, judge only what remains visible in the English translation.
+Do not infer or directly score target-language grammar because the original wording is not shown in this protocol.
+
+English translation of candidate summary:
+<item text redacted>
+
+Return JSON only:
+{
+  ""score"": integer from 1 to 5,
+  ""label"": ""bad"" | ""borderline"" | ""good"",
+  ""confidence"": number from 0 to 1,
+  ""rationale_brief"": string of at most 18 words
+}"
+candidate audit n25,P0_direct_english,es-ES,comprehensibility,gpt-4.1-mini,You are a careful evaluator. Return valid JSON only.,"Task: summarization quality evaluation
+Language of candidate summary: Spanish
+
+Evaluation dimension: Comprehensibility
+Rubric:
+1 = very poor
+2 = poor
+3 = acceptable
+4 = good
+5 = excellent
+
+Question:
+Is the summary easy to understand as written?
+
+Candidate summary:
+<item text redacted>
+
+Judge only the candidate summary. Do not infer facts from an unavailable source article.
+
+Return JSON only:
+{
+  ""score"": integer from 1 to 5,
+  ""label"": ""bad"" | ""borderline"" | ""good"",
+  ""confidence"": number from 0 to 1,
+  ""rationale_brief"": string of at most 18 words
+}"
+candidate audit n25,P1_target_rubric,es-ES,comprehensibility,gpt-4.1-mini,Eres un evaluador cuidadoso. Devuelve solo JSON valido.,"Tarea: evaluacion de la calidad de un resumen
+Dimension de evaluacion: Comprehensibility
+
+Pregunta:
+El resumen es facil de entender tal como esta escrito?
+
+Rubrica:
+1 = muy deficiente
+2 = deficiente
+3 = aceptable
+4 = bueno
+5 = excelente
+
+Resumen candidato:
+<item text redacted>
+
+Devuelve solo JSON con las claves score, label, confidence, rationale_brief. Usa label bad, borderline o good."
+candidate audit n25,P3_bilingual,es-ES,comprehensibility,gpt-4.1-mini,You are a careful bilingual evaluator. Return valid JSON only.,"Task / Task in target language: summarization quality evaluation / Tarea: evaluacion de la calidad de un resumen
+Language / Target language: Spanish / es-ES
+
+Evaluation dimension / Dimension de evaluacion:
+Comprehensibility
+
+Question:
+Is the summary easy to understand as written?
+Pregunta:
+El resumen es facil de entender tal como esta escrito?
+
+Rubric:
+1 = very poor
+2 = poor
+3 = acceptable
+4 = good
+5 = excellent
+
+Rubrica:
+1 = muy deficiente
+2 = deficiente
+3 = aceptable
+4 = bueno
+5 = excelente
+
+Candidate summary / Resumen candidato:
+<item text redacted>
+
+Return JSON only:
+{
+  ""score"": integer from 1 to 5,
+  ""label"": ""bad"" | ""borderline"" | ""good"",
+  ""confidence"": number from 0 to 1,
+  ""rationale_brief"": string of at most 18 words
+}"
+candidate audit n25,P2_explicit_pivot,es-ES,comprehensibility,gpt-4.1-mini,You are a careful evaluator. Return valid JSON only.,"Task: summarization quality evaluation through an explicit English pivot
+Original language of candidate summary: Spanish
+
+The source and candidate summary have been translated into English for evaluation when a source is available.
+
+Evaluation dimension: Comprehensibility
+Question:
+Is the summary easy to understand as written?
+
+Important:
+For grammar, fluency, or language-form dimensions, judge only what remains visible in the English translation.
+Do not infer or directly score target-language grammar because the original wording is not shown in this protocol.
+
+English translation of candidate summary:
+<item text redacted>
+
+Return JSON only:
+{
+  ""score"": integer from 1 to 5,
+  ""label"": ""bad"" | ""borderline"" | ""good"",
+  ""confidence"": number from 0 to 1,
+  ""rationale_brief"": string of at most 18 words
+}"
+semantic n30,P0_direct_english,es-ES,main_ideas,gpt-4o-mini,You are a careful evaluator. Return valid JSON only.,"Task: summarization quality evaluation
+Language of candidate summary: Spanish
+
+Evaluation dimension: Main ideas
+Rubric:
+1 = very poor
+2 = poor
+3 = acceptable
+4 = good
+5 = excellent
+
+Question:
+Does the summary capture the main idea or ideas of the source article?
+
+Source text:
+<item text redacted>
+
+Candidate summary:
+<item text redacted>
+
+Judge the candidate summary against the source text.
+
+Return JSON only:
+{
+  ""score"": integer from 1 to 5,
+  ""label"": ""bad"" | ""borderline"" | ""good"",
+  ""confidence"": number from 0 to 1,
+  ""rationale_brief"": string of at most 18 words
+}"
+semantic n30,P1_target_rubric,es-ES,main_ideas,gpt-4o-mini,Eres un evaluador cuidadoso. Devuelve solo JSON valido.,"Tarea: evaluacion de la calidad de un resumen
+Dimension de evaluacion: Main ideas
+
+Pregunta:
+El resumen captura la idea principal o las ideas principales del texto fuente?
+
+Rubrica:
+1 = muy deficiente
+2 = deficiente
+3 = aceptable
+4 = bueno
+5 = excelente
+
+Texto fuente:
+<item text redacted>
+
+Resumen candidato:
+<item text redacted>
+
+Devuelve solo JSON con las claves score, label, confidence, rationale_brief. Usa label bad, borderline o good."
+semantic n30,P2_explicit_pivot,es-ES,main_ideas,gpt-4o-mini,You are a careful evaluator. Return valid JSON only.,"Task: summarization quality evaluation through an explicit English pivot
+Original language of candidate summary: Spanish
+
+The source and candidate summary have been translated into English for evaluation when a source is available.
+
+Evaluation dimension: Main ideas
+Question:
+Does the summary capture the main idea or ideas of the source article?
+
+Important:
+For grammar, fluency, or language-form dimensions, judge only what remains visible in the English translation.
+Do not infer or directly score target-language grammar because the original wording is not shown in this protocol.
+
+English translation of source text:
+<item text redacted>
+
+English translation of candidate summary:
+<item text redacted>
+
+Return JSON only:
+{
+  ""score"": integer from 1 to 5,
+  ""label"": ""bad"" | ""borderline"" | ""good"",
+  ""confidence"": number from 0 to 1,
+  ""rationale_brief"": string of at most 18 words
+}"
+semantic n30,P3_bilingual,es-ES,main_ideas,gpt-4o-mini,You are a careful bilingual evaluator. Return valid JSON only.,"Task / Task in target language: summarization quality evaluation / Tarea: evaluacion de la calidad de un resumen
+Language / Target language: Spanish / es-ES
+
+Evaluation dimension / Dimension de evaluacion:
+Main ideas
+
+Question:
+Does the summary capture the main idea or ideas of the source article?
+Pregunta:
+El resumen captura la idea principal o las ideas principales del texto fuente?
+
+Rubric:
+1 = very poor
+2 = poor
+3 = acceptable
+4 = good
+5 = excellent
+
+Rubrica:
+1 = muy deficiente
+2 = deficiente
+3 = aceptable
+4 = bueno
+5 = excelente
+
+Source text / Texto fuente:
+<item text redacted>
+
+Candidate summary / Resumen candidato:
+<item text redacted>
+
+Return JSON only:
+{
+  ""score"": integer from 1 to 5,
+  ""label"": ""bad"" | ""borderline"" | ""good"",
+  ""confidence"": number from 0 to 1,
+  ""rationale_brief"": string of at most 18 words
+}"
+wmt reference n30,P0_direct_english,en-de,translation_quality,gpt-4o-mini,You are a careful machine translation evaluator. Return valid JSON only.,"Task: machine translation quality evaluation
+Language pair: English to German
+Source language: English
+Target language: German
+
+Evaluation dimension: Translation quality
+Question:
+Is the candidate translation accurate, fluent, and adequate with respect to the source and reference?
+
+Rubric:
+1 = very poor translation with severe meaning loss or unusable language
+2 = poor translation with major errors
+3 = acceptable translation with noticeable errors
+4 = good translation with minor errors
+5 = excellent translation
+
+Source text:
+<item text redacted>
+
+Reference translation:
+<item text redacted>
+
+Candidate translation:
+<item text redacted>
+
+Judge the candidate translation, not the reference.
+
+Return JSON only:
+{
+  ""score"": integer from 1 to 5,
+  ""label"": ""bad"" | ""borderline"" | ""good"",
+  ""confidence"": number from 0 to 1,
+  ""rationale_brief"": string of at most 18 words
+}"
+wmt reference n30,P1_target_rubric,en-de,translation_quality,gpt-4o-mini,Sie sind ein sorgfaeltiger Evaluator fuer maschinelle Uebersetzung. Geben Sie nur gueltiges JSON zurueck.,"Aufgabe: Bewertung der Qualitaet maschineller Uebersetzung
+Language pair: English to German
+Source language: English
+Target language: German
+
+Evaluation dimension: Translation quality
+Question:
+Ist die Kandidatenuebersetzung im Vergleich zu Quelle und Referenz genau, fluessig und angemessen?
+
+Bewertungsskala:
+1 = sehr schlechte Uebersetzung mit schwerem Bedeutungsverlust oder unbrauchbarer Sprache
+2 = schlechte Uebersetzung mit groben Fehlern
+3 = akzeptable Uebersetzung mit erkennbaren Fehlern
+4 = gute Uebersetzung mit kleinen Fehlern
+5 = ausgezeichnete Uebersetzung
+
+Ausgangstext:
+<item text redacted>
+
+Referenzuebersetzung:
+<item text redacted>
+
+Kandidatenuebersetzung:
+<item text redacted>
+
+Bewerten Sie die Kandidatenuebersetzung, nicht die Referenz.
+
+Return JSON only:
+{
+  ""score"": integer from 1 to 5,
+  ""label"": ""bad"" | ""borderline"" | ""good"",
+  ""confidence"": number from 0 to 1,
+  ""rationale_brief"": string of at most 18 words
+}"
+wmt reference n30,P2_explicit_pivot,en-de,translation_quality,gpt-4o-mini,You are a careful machine translation evaluator. Return valid JSON only.,"Task: machine translation quality evaluation through an explicit English pivot
+Original language pair: English to German
+
+The source, candidate translation, and reference translation have been translated into English for evaluation.
+
+Evaluation dimension: Translation quality
+Question:
+Is the candidate translation accurate, fluent, and adequate with respect to the source and reference?
+
+Important:
+Judge only what remains visible in the English translations. Do not infer target-language fluency errors that are not visible after translation.
+
+English translation of source text:
+<item text redacted>
+
+English translation of reference:
+<item text redacted>
+
+English translation of candidate:
+<item text redacted>
+
+Return JSON only:
+{
+  ""score"": integer from 1 to 5,
+  ""label"": ""bad"" | ""borderline"" | ""good"",
+  ""confidence"": number from 0 to 1,
+  ""rationale_brief"": string of at most 18 words
+}"
+wmt reference n30,P3_bilingual,en-de,translation_quality,gpt-4o-mini,You are a careful machine translation evaluator. Return valid JSON only.,"Task: machine translation quality evaluation
+Language pair: English to German
+Source language: English
+Target language: German
+
+English rubric:
+Is the candidate translation accurate, fluent, and adequate with respect to the source and reference?
+1 = very poor translation with severe meaning loss or unusable language
+2 = poor translation with major errors
+3 = acceptable translation with noticeable errors
+4 = good translation with minor errors
+5 = excellent translation
+
+Target-language rubric:
+Ist die Kandidatenuebersetzung im Vergleich zu Quelle und Referenz genau, fluessig und angemessen?
+Bewertungsskala:
+1 = sehr schlechte Uebersetzung mit schwerem Bedeutungsverlust oder unbrauchbarer Sprache
+2 = schlechte Uebersetzung mit groben Fehlern
+3 = akzeptable Uebersetzung mit erkennbaren Fehlern
+4 = gute Uebersetzung mit kleinen Fehlern
+5 = ausgezeichnete Uebersetzung
+
+Source text:
+<item text redacted>
+
+Reference translation:
+<item text redacted>
+
+Candidate translation:
+<item text redacted>
+
+Judge the candidate translation, not the reference. Use both rubric versions when helpful.
+
+Return JSON only:
+{
+  ""score"": integer from 1 to 5,
+  ""label"": ""bad"" | ""borderline"" | ""good"",
+  ""confidence"": number from 0 to 1,
+  ""rationale_brief"": string of at most 18 words
+}"
+wmt ref-free n30,P0_direct_english,en-de,translation_quality_ref_free,gpt-4o-mini,You are a careful machine translation evaluator. Return valid JSON only.,"Task: machine translation quality evaluation
+Language pair: English to German
+Source language: English
+Target language: German
+
+Evaluation dimension: Translation quality
+Question:
+Is the candidate translation accurate, fluent, and adequate with respect to the source text?
+
+Rubric:
+1 = very poor translation with severe meaning loss or unusable language
+2 = poor translation with major errors
+3 = acceptable translation with noticeable errors
+4 = good translation with minor errors
+5 = excellent translation
+
+Source text:
+<item text redacted>
+
+No reference translation is provided. Judge against the source text only.
+
+
+Candidate translation:
+<item text redacted>
+
+Judge the candidate translation.
+
+Return JSON only:
+{
+  ""score"": integer from 1 to 5,
+  ""label"": ""bad"" | ""borderline"" | ""good"",
+  ""confidence"": number from 0 to 1,
+  ""rationale_brief"": string of at most 18 words
+}"
+wmt ref-free n30,P1_target_rubric,en-de,translation_quality_ref_free,gpt-4o-mini,Sie sind ein sorgfaeltiger Evaluator fuer maschinelle Uebersetzung. Geben Sie nur gueltiges JSON zurueck.,"Aufgabe: Bewertung der Qualitaet maschineller Uebersetzung
+Language pair: English to German
+Source language: English
+Target language: German
+
+Evaluation dimension: Translation quality
+Question:
+Ist die Kandidatenuebersetzung im Vergleich zur Quelle genau, fluessig und angemessen?
+
+Bewertungsskala:
+1 = sehr schlechte Uebersetzung mit schwerem Bedeutungsverlust oder unbrauchbarer Sprache
+2 = schlechte Uebersetzung mit groben Fehlern
+3 = akzeptable Uebersetzung mit erkennbaren Fehlern
+4 = gute Uebersetzung mit kleinen Fehlern
+5 = ausgezeichnete Uebersetzung
+
+Ausgangstext:
+<item text redacted>
+
+No reference translation is provided. Judge against the source text only.
+
+
+Kandidatenuebersetzung:
+<item text redacted>
+
+Bewerten Sie die Kandidatenuebersetzung.
+
+Return JSON only:
+{
+  ""score"": integer from 1 to 5,
+  ""label"": ""bad"" | ""borderline"" | ""good"",
+  ""confidence"": number from 0 to 1,
+  ""rationale_brief"": string of at most 18 words
+}"
+wmt ref-free n30,P2_explicit_pivot,en-de,translation_quality_ref_free,gpt-4o-mini,You are a careful machine translation evaluator. Return valid JSON only.,"Task: machine translation quality evaluation through an explicit English pivot
+Original language pair: English to German
+
+The source and candidate translation have been translated into English for reference-free evaluation.
+
+Evaluation dimension: Translation quality
+Question:
+Is the candidate translation accurate, fluent, and adequate with respect to the source text?
+
+Important:
+Judge only what remains visible in the English translations. Do not infer target-language fluency errors that are not visible after translation.
+
+English translation of source text:
+<item text redacted>
+
+No reference translation is provided. Judge against the English source text only.
+
+
+English translation of candidate:
+<item text redacted>
+
+Return JSON only:
+{
+  ""score"": integer from 1 to 5,
+  ""label"": ""bad"" | ""borderline"" | ""good"",
+  ""confidence"": number from 0 to 1,
+  ""rationale_brief"": string of at most 18 words
+}"
+wmt ref-free n30,P3_bilingual,en-de,translation_quality_ref_free,gpt-4o-mini,You are a careful machine translation evaluator. Return valid JSON only.,"Task: machine translation quality evaluation
+Language pair: English to German
+Source language: English
+Target language: German
+
+English rubric:
+Is the candidate translation accurate, fluent, and adequate with respect to the source text?
+1 = very poor translation with severe meaning loss or unusable language
+2 = poor translation with major errors
+3 = acceptable translation with noticeable errors
+4 = good translation with minor errors
+5 = excellent translation
+
+Target-language rubric:
+Ist die Kandidatenuebersetzung im Vergleich zur Quelle genau, fluessig und angemessen?
+Bewertungsskala:
+1 = sehr schlechte Uebersetzung mit schwerem Bedeutungsverlust oder unbrauchbarer Sprache
+2 = schlechte Uebersetzung mit groben Fehlern
+3 = akzeptable Uebersetzung mit erkennbaren Fehlern
+4 = gute Uebersetzung mit kleinen Fehlern
+5 = ausgezeichnete Uebersetzung
+
+Source text:
+<item text redacted>
+
+No reference translation is provided. Judge against the source text only.
+
+
+Candidate translation:
+<item text redacted>
+
+Judge the candidate translation. Use both rubric versions when helpful.
+
+Return JSON only:
+{
+  ""score"": integer from 1 to 5,
+  ""label"": ""bad"" | ""borderline"" | ""good"",
+  ""confidence"": number from 0 to 1,
+  ""rationale_brief"": string of at most 18 words
+}"
+wmt ref-free audit,P0_direct_english,zh-en,translation_quality_ref_free,gpt-4.1-mini,You are a careful machine translation evaluator. Return valid JSON only.,"Task: machine translation quality evaluation
+Language pair: Chinese to English
+Source language: Chinese
+Target language: English
+
+Evaluation dimension: Translation quality
+Question:
+Is the candidate translation accurate, fluent, and adequate with respect to the source text?
+
+Rubric:
+1 = very poor translation with severe meaning loss or unusable language
+2 = poor translation with major errors
+3 = acceptable translation with noticeable errors
+4 = good translation with minor errors
+5 = excellent translation
+
+Source text:
+<item text redacted>
+
+No reference translation is provided. Judge against the source text only.
+
+
+Candidate translation:
+<item text redacted>
+
+Judge the candidate translation.
+
+Return JSON only:
+{
+  ""score"": integer from 1 to 5,
+  ""label"": ""bad"" | ""borderline"" | ""good"",
+  ""confidence"": number from 0 to 1,
+  ""rationale_brief"": string of at most 18 words
+}"
+wmt ref-free audit,P2_explicit_pivot,en-de,translation_quality_ref_free,gpt-4.1-mini,You are a careful machine translation evaluator. Return valid JSON only.,"Task: machine translation quality evaluation through an explicit English pivot
+Original language pair: English to German
+
+The source and candidate translation have been translated into English for reference-free evaluation.
+
+Evaluation dimension: Translation quality
+Question:
+Is the candidate translation accurate, fluent, and adequate with respect to the source text?
+
+Important:
+Judge only what remains visible in the English translations. Do not infer target-language fluency errors that are not visible after translation.
+
+English translation of source text:
+<item text redacted>
+
+No reference translation is provided. Judge against the English source text only.
+
+
+English translation of candidate:
+<item text redacted>
+
+Return JSON only:
+{
+  ""score"": integer from 1 to 5,
+  ""label"": ""bad"" | ""borderline"" | ""good"",
+  ""confidence"": number from 0 to 1,
+  ""rationale_brief"": string of at most 18 words
+}"
+wmt ref-free audit,P3_bilingual,en-de,translation_quality_ref_free,gpt-4.1-mini,You are a careful machine translation evaluator. Return valid JSON only.,"Task: machine translation quality evaluation
+Language pair: English to German
+Source language: English
+Target language: German
+
+English rubric:
+Is the candidate translation accurate, fluent, and adequate with respect to the source text?
+1 = very poor translation with severe meaning loss or unusable language
+2 = poor translation with major errors
+3 = acceptable translation with noticeable errors
+4 = good translation with minor errors
+5 = excellent translation
+
+Target-language rubric:
+Ist die Kandidatenuebersetzung im Vergleich zur Quelle genau, fluessig und angemessen?
+Bewertungsskala:
+1 = sehr schlechte Uebersetzung mit schwerem Bedeutungsverlust oder unbrauchbarer Sprache
+2 = schlechte Uebersetzung mit groben Fehlern
+3 = akzeptable Uebersetzung mit erkennbaren Fehlern
+4 = gute Uebersetzung mit kleinen Fehlern
+5 = ausgezeichnete Uebersetzung
+
+Source text:
+<item text redacted>
+
+No reference translation is provided. Judge against the source text only.
+
+
+Candidate translation:
+<item text redacted>
+
+Judge the candidate translation. Use both rubric versions when helpful.
+
+Return JSON only:
+{
+  ""score"": integer from 1 to 5,
+  ""label"": ""bad"" | ""borderline"" | ""good"",
+  ""confidence"": number from 0 to 1,
+  ""rationale_brief"": string of at most 18 words
+}"

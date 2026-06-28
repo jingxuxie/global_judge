@@ -1,0 +1,39 @@
+name: wmt_mqm_ref_free_audit_en_de_gpt41mini
+seed: 83
+
+paths:
+  hf_cache_dir: data/raw/hf_datasets
+  items_jsonl: data/processed/wmt_mqm_n30_items.jsonl
+  english_translations_jsonl: data/processed/wmt_mqm_n30_english_translations.jsonl
+  prompts_jsonl: data/prompts/wmt_mqm_ref_free_audit_en_de_gpt41mini_prompts.jsonl
+  responses_jsonl: data/responses/wmt_mqm_ref_free_audit_en_de_gpt41mini_responses.jsonl
+  metrics_csv: data/analysis/wmt_mqm_ref_free_audit_en_de_gpt41mini_metrics.csv
+  shifts_csv: data/analysis/wmt_mqm_ref_free_audit_en_de_gpt41mini_protocol_shifts.csv
+  calibration_csv: data/analysis/wmt_mqm_ref_free_audit_en_de_gpt41mini_calibration.csv
+  calibration_summary_md: data/analysis/wmt_mqm_ref_free_audit_en_de_gpt41mini_calibration_summary.md
+  summary_md: data/analysis/wmt_mqm_ref_free_audit_en_de_gpt41mini_summary.md
+  heatmap_png: paper/figures/wmt_mqm_ref_free_audit_en_de_gpt41mini_heatmap.png
+  shift_png: paper/figures/wmt_mqm_ref_free_audit_en_de_gpt41mini_shifts.png
+
+dataset:
+  language_pairs: ["en-de"]
+
+evaluation:
+  reference_mode: reference_free
+  dimension: translation_quality_ref_free
+  prompt_id_suffix: ref_free_audit_en_de
+
+protocols:
+  - P2_explicit_pivot
+  - P3_bilingual
+
+judge:
+  model: gpt-4.1-mini
+  max_output_tokens: 120
+  temperature: 0
+  request_limit: 60
+
+calibration:
+  fraction: 0.3
+  baseline_threshold: 4
+  threshold_candidates: [2, 3, 4, 5]

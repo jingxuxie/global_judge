@@ -1,0 +1,3 @@
+judge_model,dimension,protocol,protocol_name,n_languages,mean_spearman,min_spearman,min_spearman_language,max_spearman,max_spearman_language,spearman_language_gap,mean_auroc,min_auroc,min_auroc_language,max_auroc,max_auroc_language,auroc_language_gap
+gpt-4.1-mini,translation_quality_ref_free,P0_direct_english,Direct English rubric,1,0.5027112659250815,0.5027112659250815,zh-en,0.5027112659250815,zh-en,0.0,0.7733333333333333,0.7733333333333333,zh-en,0.7733333333333333,zh-en,0.0
+gpt-4.1-mini,translation_quality_ref_free,P2_explicit_pivot,Explicit English pivot,1,0.2544982606324177,0.2544982606324177,zh-en,0.2544982606324177,zh-en,0.0,0.6355555555555555,0.6355555555555555,zh-en,0.6355555555555555,zh-en,0.0

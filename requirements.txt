@@ -1,0 +1,11 @@
+pandas
+numpy
+scipy
+matplotlib
+seaborn
+pyyaml
+tqdm
+openai
+tiktoken
+requests
+datasets==2.21.0

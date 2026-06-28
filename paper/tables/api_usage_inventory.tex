@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\caption{Price-independent API usage inventory from returned token metadata. API calls include translation calls and retries recorded in the run cost paths.}
+\label{tab:api_usage_inventory}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llllll}
+\toprule
+Run & API calls & Input tok. & Output tok. & Total tok. & Tok./call \\
+\midrule
+candidate n50 & 2000 & 382769 & 89897 & 472666 & 236.3 \\
+candidate audit n25 & 1005 & 198162 & 48377 & 246539 & 245.3 \\
+semantic n30 & 450 & 252403 & 46780 & 299183 & 664.9 \\
+wmt reference n30 & 390 & 108238 & 22157 & 130395 & 334.3 \\
+wmt ref-free n30 & 300 & 84237 & 13339 & 97576 & 325.3 \\
+wmt ref-free audit & 120 & 32659 & 5649 & 38308 & 319.2 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

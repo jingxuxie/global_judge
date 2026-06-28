@@ -1,0 +1,33 @@
+# Local credentials and environment files
+apikey.txt
+.env
+.env.*
+
+# Agent/session metadata
+.agents/
+.codex/
+
+# Python build/cache artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local logs and cache directories
+logs/
+
+# Raw downloaded datasets are large and should be fetched locally.
+data/raw/
+
+# LaTeX build intermediates
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.log
+paper/*.out
+paper/*.synctex.gz
+
+# OS/editor noise
+.DS_Store
+*.swp

@@ -1,0 +1,47 @@
+name: semantic_xlsum_n30
+seed: 61
+
+paths:
+  seahorse_raw_dir: data/raw/seahorse/seahorse_data
+  xlsum_raw_dir: data/raw/xlsum/extracted
+  items_jsonl: data/processed/semantic_xlsum_n30_items.jsonl
+  english_translations_jsonl: data/processed/semantic_xlsum_n30_english_translations.jsonl
+  prompts_jsonl: data/prompts/semantic_xlsum_n30_prompts.jsonl
+  responses_jsonl: data/responses/semantic_xlsum_n30_responses.jsonl
+  metrics_csv: data/analysis/semantic_xlsum_n30_metrics.csv
+  shifts_csv: data/analysis/semantic_xlsum_n30_protocol_shifts.csv
+  calibration_csv: data/analysis/semantic_xlsum_n30_calibration.csv
+  calibration_summary_md: data/analysis/semantic_xlsum_n30_calibration_summary.md
+  summary_md: data/analysis/semantic_xlsum_n30_summary.md
+  heatmap_png: paper/figures/semantic_xlsum_n30_heatmap.png
+  shift_png: paper/figures/semantic_xlsum_n30_shifts.png
+
+dataset:
+  split: test
+  languages: ["es-ES", "tr", "vi"]
+  dimensions: ["main_ideas"]
+  samples_per_language_dimension: 30
+  max_source_chars: 1400
+  max_summary_chars: 700
+
+protocols:
+  - P0_direct_english
+  - P1_target_rubric
+  - P2_explicit_pivot
+  - P3_bilingual
+
+judge:
+  model: gpt-4o-mini
+  max_output_tokens: 120
+  temperature: 0
+  request_limit: 360
+
+translation:
+  model: gpt-4o-mini
+  max_output_tokens: 650
+  temperature: 0
+
+calibration:
+  fraction: 0.3
+  baseline_threshold: 4
+  threshold_candidates: [2, 3, 4, 5]

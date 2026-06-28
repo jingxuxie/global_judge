@@ -1,0 +1,53 @@
+name: wmt_mqm_ref_free_n30
+seed: 83
+
+paths:
+  hf_cache_dir: data/raw/hf_datasets
+  items_jsonl: data/processed/wmt_mqm_n30_items.jsonl
+  english_translations_jsonl: data/processed/wmt_mqm_n30_english_translations.jsonl
+  prompts_jsonl: data/prompts/wmt_mqm_ref_free_n30_prompts.jsonl
+  responses_jsonl: data/responses/wmt_mqm_ref_free_n30_responses.jsonl
+  metrics_csv: data/analysis/wmt_mqm_ref_free_n30_metrics.csv
+  shifts_csv: data/analysis/wmt_mqm_ref_free_n30_protocol_shifts.csv
+  calibration_csv: data/analysis/wmt_mqm_ref_free_n30_calibration.csv
+  calibration_summary_md: data/analysis/wmt_mqm_ref_free_n30_calibration_summary.md
+  summary_md: data/analysis/wmt_mqm_ref_free_n30_summary.md
+  heatmap_png: paper/figures/wmt_mqm_ref_free_n30_heatmap.png
+  shift_png: paper/figures/wmt_mqm_ref_free_n30_shifts.png
+
+dataset:
+  hf_dataset: RicardoRei/wmt-mqm-human-evaluation
+  split: train
+  year: 2022
+  language_pairs: ["en-de", "en-ru", "zh-en"]
+  samples_per_language_pair: 30
+  max_source_chars: 700
+  max_candidate_chars: 700
+  max_reference_chars: 700
+
+evaluation:
+  reference_mode: reference_free
+  dimension: translation_quality_ref_free
+  prompt_id_suffix: ref_free
+
+protocols:
+  - P0_direct_english
+  - P1_target_rubric
+  - P2_explicit_pivot
+  - P3_bilingual
+
+judge:
+  model: gpt-4o-mini
+  max_output_tokens: 120
+  temperature: 0
+  request_limit: 300
+
+translation:
+  model: gpt-4o-mini
+  max_output_tokens: 700
+  temperature: 0
+
+calibration:
+  fraction: 0.3
+  baseline_threshold: 4
+  threshold_candidates: [2, 3, 4, 5]

@@ -1,0 +1,2 @@
+judge_model,language,dimension,protocol_a,protocol_b,mean_abs_shift,median_abs_shift,n
+gpt-4.1-mini,en-de,translation_quality_ref_free,P2_explicit_pivot,P3_bilingual,0.2,0.0,30

@@ -1,0 +1,20 @@
+\begin{table}[t]
+\centering
+\caption{Held-out threshold calibration effects.}
+\label{tab:calibration_summary}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llll}
+\toprule
+Run & Groups & Mean $\Delta$BalAcc & Median $\Delta$BalAcc \\
+\midrule
+candidate n50 & 32 & -0.017 & 0.000 \\
+audit n25 & 32 & -0.029 & -0.003 \\
+semantic n30 & 12 & 0.136 & 0.136 \\
+wmt n30 & 10 & -0.036 & 0.000 \\
+wmt ref-free n30 & 10 & 0.059 & 0.000 \\
+wmt audit zh-en & 2 & -0.045 & -0.045 \\
+wmt audit en-de & 2 & 0.000 & 0.000 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

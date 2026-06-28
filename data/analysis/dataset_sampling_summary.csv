@@ -1,0 +1,7 @@
+run,items,languages,dimensions,human_positive,human_negative,positive_rate,mean_candidate_chars,max_candidate_chars,source_available_rate,reference_available_rate
+candidate n50,400,4,2,200,200,0.5,162.85,903,0.0,0.0
+candidate audit n25,200,4,2,96,104,0.48,177.995,903,0.0,0.0
+semantic n30,90,3,1,45,45,0.5,131.4777777777778,338,1.0,1.0
+wmt n30 shared items,90,3,1,45,45,0.5,116.15555555555555,357,1.0,1.0
+wmt ref-free audit zh-en,30,1,1,15,15,0.5,120.86666666666666,357,1.0,1.0
+wmt ref-free audit en-de,30,1,1,15,15,0.5,102.23333333333333,255,1.0,1.0

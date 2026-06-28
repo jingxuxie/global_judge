@@ -1,0 +1,255 @@
+{
+  "checks": [
+    {
+      "command": "/home/eston/anaconda3/envs/global_judge/bin/python -m compileall src",
+      "elapsed_seconds": 0.031,
+      "expected_returncode": 0,
+      "name": "compile source",
+      "passed": true,
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "Listing 'src'...\n"
+    },
+    {
+      "command": "/home/eston/anaconda3/envs/global_judge/bin/python src/summarize_protocol_instability.py",
+      "elapsed_seconds": 0.693,
+      "expected_returncode": 0,
+      "name": "summarize protocol instability",
+      "passed": true,
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "Wrote data/analysis/protocol_instability_cells.csv\nWrote data/analysis/protocol_instability_summary.csv\nWrote data/analysis/protocol_instability_summary.md\n"
+    },
+    {
+      "command": "/home/eston/anaconda3/envs/global_judge/bin/python src/extract_qualitative_examples.py",
+      "elapsed_seconds": 0.645,
+      "expected_returncode": 0,
+      "name": "extract qualitative examples",
+      "passed": true,
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "Wrote data/analysis/qualitative_protocol_examples.csv\nWrote data/analysis/qualitative_protocol_examples.md\n"
+    },
+    {
+      "command": "/home/eston/anaconda3/envs/global_judge/bin/python src/summarize_prompt_inventory.py",
+      "elapsed_seconds": 0.802,
+      "expected_returncode": 0,
+      "name": "summarize prompt inventory",
+      "passed": true,
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "Wrote data/analysis/prompt_inventory.csv\nWrote data/analysis/prompt_inventory_summary.csv\nWrote data/analysis/prompt_representatives.csv\nWrote data/analysis/prompt_inventory.md\nWrote paper/tables/prompt_inventory.tex\n"
+    },
+    {
+      "command": "/home/eston/anaconda3/envs/global_judge/bin/python src/summarize_dataset_sampling.py",
+      "elapsed_seconds": 0.556,
+      "expected_returncode": 0,
+      "name": "summarize dataset sampling",
+      "passed": true,
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "Wrote data/analysis/dataset_sampling_items.csv\nWrote data/analysis/dataset_sampling_groups.csv\nWrote data/analysis/dataset_sampling_summary.csv\nWrote data/analysis/dataset_sampling_audit.md\nWrote paper/tables/dataset_sampling_audit.tex\n"
+    },
+    {
+      "command": "/home/eston/anaconda3/envs/global_judge/bin/python src/summarize_calibration_learning_curve.py",
+      "elapsed_seconds": 23.178,
+      "expected_returncode": 0,
+      "name": "summarize calibration learning curve",
+      "passed": true,
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "Wrote data/analysis/calibration_learning_curve_raw.csv\nWrote data/analysis/calibration_learning_curve_summary.csv\nWrote data/analysis/calibration_learning_curve_summary.md\n"
+    },
+    {
+      "command": "/home/eston/anaconda3/envs/global_judge/bin/python src/summarize_score_threshold_diagnostic.py",
+      "elapsed_seconds": 0.951,
+      "expected_returncode": 0,
+      "name": "summarize score threshold diagnostic",
+      "passed": true,
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "Wrote data/analysis/score_threshold_diagnostic_groups.csv\nWrote data/analysis/score_threshold_diagnostic_summary.csv\nWrote data/analysis/score_threshold_diagnostic.md\nWrote paper/tables/score_threshold_diagnostic.tex\n"
+    },
+    {
+      "command": "/home/eston/anaconda3/envs/global_judge/bin/python src/summarize_run_inventory.py",
+      "elapsed_seconds": 0.744,
+      "expected_returncode": 0,
+      "name": "summarize run inventory",
+      "passed": true,
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "Wrote data/analysis/run_inventory.csv\nWrote data/analysis/run_inventory.md\n"
+    },
+    {
+      "command": "/home/eston/anaconda3/envs/global_judge/bin/python src/summarize_repeatability_control.py",
+      "elapsed_seconds": 0.656,
+      "expected_returncode": 0,
+      "name": "summarize repeatability control",
+      "passed": true,
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "Wrote data/analysis/repeatability_control_summary.csv\nWrote data/analysis/repeatability_control_details.csv\nWrote data/analysis/repeatability_control.md\nWrote paper/tables/repeatability_control.tex\n"
+    },
+    {
+      "command": "/home/eston/anaconda3/envs/global_judge/bin/python src/export_paper_tables.py",
+      "elapsed_seconds": 0.718,
+      "expected_returncode": 0,
+      "name": "export paper tables",
+      "passed": true,
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "Wrote tables to paper/tables\n"
+    },
+    {
+      "command": "/home/eston/anaconda3/envs/global_judge/bin/python src/build_claim_evidence_matrix.py",
+      "elapsed_seconds": 0.62,
+      "expected_returncode": 0,
+      "name": "build claim evidence matrix",
+      "passed": true,
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "Wrote data/analysis/claim_evidence_matrix.csv\nWrote data/analysis/claim_evidence_matrix.md\nWrote paper/tables/claim_evidence_matrix.tex\n"
+    },
+    {
+      "command": "/home/eston/anaconda3/envs/global_judge/bin/python src/build_rq_contribution_matrix.py",
+      "elapsed_seconds": 0.562,
+      "expected_returncode": 0,
+      "name": "build rq contribution matrix",
+      "passed": true,
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "Wrote data/analysis/rq_contribution_matrix.csv\nWrote data/analysis/rq_contribution_matrix.md\nWrote paper/tables/rq_contribution_matrix.tex\n"
+    },
+    {
+      "command": "/home/eston/anaconda3/envs/global_judge/bin/python src/make_results_brief.py",
+      "elapsed_seconds": 0.699,
+      "expected_returncode": 0,
+      "name": "make results brief",
+      "passed": true,
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "Wrote paper/results_brief.md\n"
+    },
+    {
+      "command": "/home/eston/anaconda3/envs/global_judge/bin/python src/build_benchmark_datacard.py",
+      "elapsed_seconds": 0.538,
+      "expected_returncode": 0,
+      "name": "build benchmark data card",
+      "passed": true,
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "Wrote paper/globaljudge_protocolbench_datacard.md\n"
+    },
+    {
+      "command": "make -C paper",
+      "elapsed_seconds": 0.065,
+      "expected_returncode": 0,
+      "name": "build paper PDFs",
+      "passed": true,
+      "returncode": 0,
+      "stderr_tail": "Rc files read:\n  /etc/LatexMk\nLatexmk: This is Latexmk, John Collins, 20 November 2021, version: 4.76.\n",
+      "stdout_tail": "make: Entering directory '/home/eston/colm_workshop/global_judge/paper'\nlatexmk -pdf -interaction=nonstopmode -halt-on-error main.tex\nNothing to do\nLatexmk: All targets (main.pdf) are up-to-date\nmake: Leaving directory '/home/eston/colm_workshop/global_judge/paper'\n"
+    },
+    {
+      "command": "/home/eston/anaconda3/envs/global_judge/bin/python src/build_reproducibility_manifest.py",
+      "elapsed_seconds": 0.254,
+      "expected_returncode": 0,
+      "name": "build reproducibility manifest",
+      "passed": true,
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "Wrote data/analysis/reproducibility_manifest.json\nWrote data/analysis/reproducibility_manifest.md\nRecorded 213 files\n"
+    },
+    {
+      "command": "/home/eston/anaconda3/envs/global_judge/bin/python src/build_submission_packet.py",
+      "elapsed_seconds": 0.486,
+      "expected_returncode": 0,
+      "name": "build submission packet",
+      "passed": true,
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "Wrote paper/submission_packet.md\n"
+    },
+    {
+      "command": "/home/eston/anaconda3/envs/global_judge/bin/python src/build_completion_audit.py",
+      "elapsed_seconds": 0.535,
+      "expected_returncode": 0,
+      "name": "build completion audit",
+      "passed": true,
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "Wrote data/analysis/completion_audit.json\nWrote data/analysis/completion_audit.md\n"
+    },
+    {
+      "command": "/home/eston/anaconda3/envs/global_judge/bin/python src/build_reproducibility_manifest.py",
+      "elapsed_seconds": 0.264,
+      "expected_returncode": 0,
+      "name": "refresh reproducibility manifest",
+      "passed": true,
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "Wrote data/analysis/reproducibility_manifest.json\nWrote data/analysis/reproducibility_manifest.md\nRecorded 213 files\n"
+    },
+    {
+      "command": "/home/eston/anaconda3/envs/global_judge/bin/python src/validate_paper_claims.py",
+      "elapsed_seconds": 0.669,
+      "expected_returncode": 0,
+      "name": "validate paper claims",
+      "passed": true,
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "Paper claim validation passed.\n"
+    },
+    {
+      "command": "pdfinfo paper/main.pdf",
+      "elapsed_seconds": 0.006,
+      "expected_returncode": 0,
+      "name": "page count: paper/main.pdf",
+      "passed": true,
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "paper/main.pdf: 11 pages"
+    },
+    {
+      "command": "pdfinfo paper/extended_abstract.pdf",
+      "elapsed_seconds": 0.007,
+      "expected_returncode": 0,
+      "name": "page count: paper/extended_abstract.pdf",
+      "passed": true,
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": "paper/extended_abstract.pdf: 2 pages"
+    },
+    {
+      "command": "rg -n (T[O]DO|T[B]D|F[I]XME|p[l]aceholder|0\\.3706|0\\.3499|0\\.3403|significant pivot dr[o]p|including a signific[a]nt|single global w[i]nner) README.md paper data/analysis/current_research_status.md src configs",
+      "elapsed_seconds": 0.009,
+      "expected_returncode": 1,
+      "name": "stale claim scan",
+      "passed": true,
+      "returncode": 1,
+      "stderr_tail": "",
+      "stdout_tail": ""
+    },
+    {
+      "command": "scan paper/main.log for undefined/citation/reference/overfull/error/rerun",
+      "elapsed_seconds": 0.001,
+      "expected_returncode": 0,
+      "name": "LaTeX hard-problem scan: paper/main.log",
+      "passed": true,
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": ""
+    },
+    {
+      "command": "scan paper/extended_abstract.log for undefined/citation/reference/overfull/error/rerun",
+      "elapsed_seconds": 0.0,
+      "expected_returncode": 0,
+      "name": "LaTeX hard-problem scan: paper/extended_abstract.log",
+      "passed": true,
+      "returncode": 0,
+      "stderr_tail": "",
+      "stdout_tail": ""
+    }
+  ],
+  "status": "passed"
+}

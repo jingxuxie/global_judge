@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\caption{Source-grounded XLSum main-ideas alignment by protocol. Values are Spearman / AUROC.}
+\label{tab:semantic_main_ideas}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llllll}
+\toprule
+Language & Best & Best Sp/AUROC & Direct & Pivot & Bilingual \\
+\midrule
+es-ES & P2\_explicit\_pivot & 0.514 / 0.771 & 0.488 / 0.762 & 0.514 / 0.771 & 0.432 / 0.724 \\
+tr & P3\_bilingual & 0.588 / 0.793 & 0.463 / 0.738 & 0.339 / 0.669 & 0.588 / 0.793 \\
+vi & P3\_bilingual & 0.195 / 0.607 & 0.143 / 0.576 & 0.000 / 0.500 & 0.195 / 0.607 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

@@ -1,0 +1,3 @@
+control,n_common_prompts,n_scored_pairs,identical_prompt_rate,exact_score_agreement,changed_score_pairs,mean_abs_score_delta,median_abs_score_delta,max_abs_score_delta,same_raw_response_rate,interpretation
+exact original-text prompt repeat,42,42,1.0,0.9285714285714286,3,0.07142857142857142,0.0,1.0,0.5,Same prompt text repeated across independent pilot/main caches; measures ordinary judge run-to-run noise.
+explicit-pivot pipeline repeat,14,14,0.0,0.5714285714285714,6,0.6428571428571429,0.0,4.0,0.2857142857142857,Prompt text changed because the English-pivot pipeline was regenerated; measures pivot-pipeline volatility.

@@ -1,0 +1,7 @@
+run,prompt_files,prompts,protocols,n_protocols,languages,n_languages,dimensions,n_dimensions,judge_models,mean_user_chars,max_user_chars
+candidate n50,1,1600,"P0_direct_english, P1_target_rubric, P2_explicit_pivot, P3_bilingual",4,"en-US, es-ES, tr, vi",4,"comprehensibility, grammar",2,gpt-4o-mini,755.281875,1694
+candidate audit n25,1,800,"P0_direct_english, P1_target_rubric, P2_explicit_pivot, P3_bilingual",4,"en-US, es-ES, tr, vi",4,"comprehensibility, grammar",2,gpt-4.1-mini,767.2525,1622
+semantic n30,1,360,"P0_direct_english, P1_target_rubric, P2_explicit_pivot, P3_bilingual",4,"es-ES, tr, vi",3,main_ideas,1,gpt-4o-mini,2092.8611111111113,2723
+wmt reference n30,1,300,"P0_direct_english, P1_target_rubric, P2_explicit_pivot, P3_bilingual",4,"en-de, en-ru, zh-en",3,translation_quality,1,gpt-4o-mini,1230.92,2119
+wmt ref-free n30,1,300,"P0_direct_english, P1_target_rubric, P2_explicit_pivot, P3_bilingual",4,"en-de, en-ru, zh-en",3,translation_quality_ref_free,1,gpt-4o-mini,1134.2933333333333,1797
+wmt ref-free audit,2,120,"P0_direct_english, P2_explicit_pivot, P3_bilingual",3,"en-de, zh-en",2,translation_quality_ref_free,1,gpt-4.1-mini,1141.2,1701

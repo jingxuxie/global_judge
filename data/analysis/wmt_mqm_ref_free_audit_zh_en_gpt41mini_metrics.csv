@@ -1,0 +1,3 @@
+judge_model,language,dimension,protocol,protocol_name,n,n_parsed,parse_rate,human_positive_rate,mean_judge_score,spearman,spearman_ci_low,spearman_ci_high,auroc,estimated_cost_usd
+gpt-4.1-mini,zh-en,translation_quality_ref_free,P0_direct_english,Direct English rubric,30,30,1.0,0.5,3.8,0.5027112659250815,0.2273941667042587,0.7431411456894513,0.7733333333333333,0.0053196
+gpt-4.1-mini,zh-en,translation_quality_ref_free,P2_explicit_pivot,Explicit English pivot,30,30,1.0,0.5,4.2,0.2544982606324177,-0.0681361743971644,0.5370842547984765,0.6355555555555555,0.0052044

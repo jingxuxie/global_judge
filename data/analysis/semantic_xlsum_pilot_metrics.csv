@@ -1,0 +1,13 @@
+judge_model,language,dimension,protocol,protocol_name,n,n_parsed,parse_rate,human_positive_rate,mean_judge_score,spearman,spearman_ci_low,spearman_ci_high,auroc,estimated_cost_usd
+gpt-4o-mini,es-ES,main_ideas,P0_direct_english,Direct English rubric,8,8,1.0,0.5,1.875,0.2519763153394848,-0.7453559924999298,1.0,0.625,0.0008253
+gpt-4o-mini,es-ES,main_ideas,P1_target_rubric,Target-language rubric,8,8,1.0,0.5,1.375,0.2581988897471611,-0.46131707209582173,0.7745966692414833,0.625,0.0009177
+gpt-4o-mini,es-ES,main_ideas,P2_explicit_pivot,Explicit English pivot,8,8,1.0,0.5,2.0,0.0,-0.7067019805419582,0.7071067811865475,0.5,0.0007767
+gpt-4o-mini,es-ES,main_ideas,P3_bilingual,Bilingual rubric,8,8,1.0,0.5,1.75,0.05976143046671967,-0.7519640884490076,0.7745966692414833,0.53125,0.0009147000000000001
+gpt-4o-mini,tr,main_ideas,P0_direct_english,Direct English rubric,8,8,1.0,0.5,2.25,0.5773502691896257,0.2927700218845599,1.0,0.75,0.0009258
+gpt-4o-mini,tr,main_ideas,P1_target_rubric,Target-language rubric,8,8,1.0,0.5,2.25,0.5773502691896257,0.2927700218845599,1.0,0.75,0.001092
+gpt-4o-mini,tr,main_ideas,P2_explicit_pivot,Explicit English pivot,8,8,1.0,0.5,2.5,0.6708203932499369,0.06584691334842399,0.9561828874675147,0.875,0.0008233499999999999
+gpt-4o-mini,tr,main_ideas,P3_bilingual,Bilingual rubric,8,8,1.0,0.5,2.125,0.629940788348712,0.2182178902359924,0.9561828874675147,0.8125,0.0010314
+gpt-4o-mini,vi,main_ideas,P0_direct_english,Direct English rubric,8,8,1.0,0.5,2.375,-0.2581988897471611,-0.7745966692414833,0.4472135954999579,0.375,0.0010122
+gpt-4o-mini,vi,main_ideas,P1_target_rubric,Target-language rubric,8,8,1.0,0.5,2.875,0.3779644730092272,0.21821789023599236,0.7745966692414833,0.625,0.0011862
+gpt-4o-mini,vi,main_ideas,P2_explicit_pivot,Explicit English pivot,8,8,1.0,0.5,2.0,-0.35355339059327373,-0.9372876354939718,0.4666666666666667,0.3125,0.0007761
+gpt-4o-mini,vi,main_ideas,P3_bilingual,Bilingual rubric,8,8,1.0,0.5,2.25,-0.24999999999999994,-0.7765961323905557,0.5773502691896257,0.375,0.0011082000000000002

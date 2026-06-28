@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\caption{Candidate-quality protocol sensitivity. Protocol columns report Spearman / AUROC.}
+\label{tab:candidate_protocol_sensitivity}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lllllllll}
+\toprule
+Cell & Direct & Target & Pivot & Bilingual & Comparison & $\Delta$AUROC & 95\% CI & Shift \\
+\midrule
+tr / comprehensibility & 0.603 / 0.836 & 0.556 / 0.810 & 0.331 / 0.686 & 0.575 / 0.822 & Pivot - direct & -0.150 & [-0.257, -0.055] & 0.620 \\
+vi / comprehensibility & 0.349 / 0.690 & 0.164 / 0.590 & 0.086 / 0.548 & 0.399 / 0.714 & Bilingual - pivot & 0.166 & [0.009, 0.317] & 0.960 \\
+vi / grammar & 0.231 / 0.622 & 0.254 / 0.628 & 0.016 / 0.509 & 0.098 / 0.550 & Pivot - target & -0.119 & [-0.268, 0.025] & 1.200 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

@@ -1,0 +1,42 @@
+name: audit_gpt41mini_n12_explicit_pivot
+seed: 57
+
+paths:
+  seahorse_raw_dir: data/raw/seahorse/seahorse_data
+  items_jsonl: data/processed/audit_gpt41mini_n12_items.jsonl
+  english_translations_jsonl: data/processed/audit_gpt41mini_n12_english_translations.jsonl
+  prompts_jsonl: data/prompts/audit_gpt41mini_n12_explicit_pivot_prompts.jsonl
+  responses_jsonl: data/responses/audit_gpt41mini_n12_explicit_pivot_responses.jsonl
+  metrics_csv: data/analysis/audit_gpt41mini_n12_explicit_pivot_metrics.csv
+  shifts_csv: data/analysis/audit_gpt41mini_n12_explicit_pivot_protocol_shifts.csv
+  calibration_csv: data/analysis/audit_gpt41mini_n12_explicit_pivot_calibration.csv
+  calibration_summary_md: data/analysis/audit_gpt41mini_n12_explicit_pivot_calibration_summary.md
+  summary_md: data/analysis/audit_gpt41mini_n12_explicit_pivot_summary.md
+  heatmap_png: paper/figures/audit_gpt41mini_n12_explicit_pivot_heatmap.png
+  shift_png: paper/figures/audit_gpt41mini_n12_explicit_pivot_shifts.png
+
+dataset:
+  split: test
+  languages: ["en-US", "es-ES", "tr", "vi"]
+  dimensions: ["comprehensibility", "grammar"]
+  samples_per_language_dimension: 12
+  max_summary_chars: 900
+
+protocols:
+  - P2_explicit_pivot
+
+judge:
+  model: gpt-4.1-mini
+  max_output_tokens: 120
+  temperature: 0
+  request_limit: 96
+
+translation:
+  model: gpt-4o-mini
+  max_output_tokens: 220
+  temperature: 0
+
+calibration:
+  fraction: 0.3
+  baseline_threshold: 4
+  threshold_candidates: [2, 3, 4, 5]

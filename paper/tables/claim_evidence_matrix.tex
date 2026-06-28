@@ -1,0 +1,22 @@
+\begin{table}[t]
+\centering
+\caption{Claim evidence matrix. Full artifact paths are provided in \texttt{data/analysis/claim\_evidence\_matrix.md}.}
+\label{tab:claim_evidence_matrix}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lll}
+\toprule
+Claim & Evidence summary & Validator coverage \\
+\midrule
+Same-item scores change materially across judge protocols. & vi/grammar target-vs-pivot mean absolute shift 1.20; 34.0\% shift by at least 2. & vi grammar shift and large-shift checks \\
+English pivot is not a safe default for candidate-quality judging. & tr/comprehensibility direct AUROC 0.836 vs pivot 0.686; pivot-direct delta -0.150 CI [-0.257, -0.055]. & tr direct/pivot Spearman, AUROC, and delta checks \\
+The main pivot failure survives a stronger OpenAI judge audit. & gpt-4.1-mini tr/comprehensibility pivot-direct AUROC delta -0.317; bilingual-pivot delta 0.353. & stronger audit tr bilingual-pivot delta check \\
+Source-grounded semantic judging is also protocol-sensitive and language-dependent. & tr bilingual-pivot AUROC delta 0.124; vi bilingual-pivot delta 0.107; vi pivot AUROC 0.500. & semantic tr bilingual-pivot delta check \\
+WMT is contrast evidence, not a stable global protocol ranking. & reference zh-en pivot-direct delta -0.024; ref-free zh-en delta -0.220; stronger audit zh-en delta -0.138; stronger audit en-de bilingual-pivot delta -0.024. & WMT ref-free zh-en delta check plus required audit artifacts \\
+No single protocol dominates across cells. & 17 non-audit cells; best protocol not direct in 11; pivot worst in 10; significant AUROC pair in 6. & aggregate instability count checks \\
+Calibration is a diagnostic, not a universal fix. & semantic largest-budget balanced-accuracy delta 0.136; candidate n50 delta -0.009; semantic score>=4 good-rate 8.3\%; WMT ref-free score>=4 good-rate 90.0\%. & calibration curve and score-threshold checks \\
+Large protocol shifts exceed ordinary exact-prompt repeat variation. & 42 exact repeated prompts; exact agreement 92.9\%; mean absolute score delta 0.071. & repeatability count, agreement, and mean-delta checks \\
+The run package is auditable for sampling, prompts, parse rate, usage, and cost. & candidate n50 sampling 200/200 pos/neg; 1600 candidate prompts; 100.0\% parse rate; 472666 candidate total tokens. & sampling, prompt inventory, parse-rate, token, and manifest checks \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
