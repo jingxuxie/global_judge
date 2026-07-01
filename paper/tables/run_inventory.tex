@@ -1,4 +1,4 @@
-\begin{table}[t]
+\begin{table}[!htbp]
 \centering
 \caption{Run inventory, parse rate, and observed incremental API cost.}
 \label{tab:run_inventory}
@@ -7,12 +7,12 @@
 \toprule
 Run & Base & Calls & Parse & Cost & Cost/1k \\
 \midrule
-candidate n50 & 400 & 1600 & 100.0\% & 0.1114 & 0.070 \\
-candidate audit n25 & 200 & 800 & 100.0\% & 0.1431 & 0.179 \\
-semantic n30 & 90 & 360 & 100.0\% & 0.0659 & 0.183 \\
-wmt reference n30 & 90 & 300 & 100.0\% & 0.0295 & 0.098 \\
-wmt ref-free n30 & 90 & 300 & 100.0\% & 0.0206 & 0.069 \\
-wmt ref-free audit & 60 & 120 & 100.0\% & 0.0221 & 0.184 \\
+candidate n50 & 400 & 1600 & 100.0\% & 0.11 & 0.07 \\
+candidate experiment n25 & 200 & 800 & 100.0\% & 0.14 & 0.18 \\
+semantic n30 & 90 & 360 & 100.0\% & 0.07 & 0.18 \\
+wmt reference n30 & 90 & 300 & 100.0\% & 0.03 & 0.10 \\
+wmt ref-free n30 & 90 & 300 & 100.0\% & 0.02 & 0.07 \\
+wmt ref-free experiment & 60 & 120 & 100.0\% & 0.02 & 0.18 \\
 \bottomrule
 \end{tabular}%
 }

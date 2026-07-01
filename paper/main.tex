@@ -33,7 +33,7 @@
 \maketitle
 
 \begin{abstract}
-LLM-as-a-judge evaluation is increasingly used to score open-ended model outputs, but multilingual evaluation often hides a consequential implementation choice: which language the judge sees, which language the rubric uses, and whether non-English examples are translated into English before judging. We study this \emph{protocol sensitivity} using SEAHORSE multilingual summarization ratings, source-grounded XLSum examples, and a WMT MQM translation-quality contrast. Across 580 non-audit base examples and 2,560 judge responses, a \texttt{gpt-4o-mini} judge gives materially different scores under direct English-rubric judging, target-language rubrics, explicit English-pivot judging, and bilingual rubrics. The largest shifts occur on target-language form dimensions: Vietnamese grammar scores differ by 1.20 points on a 1--5 scale between target-language-rubric and English-pivot protocols. English pivoting is not a safe default: for Turkish comprehensibility it significantly reduces alignment with human labels, and a \texttt{gpt-4.1-mini} audit reproduces the failure mode. Source-grounded semantics and WMT MQM show smaller or more model-dependent effects, clarifying the boundary of the claim. Across 17 non-audit task/language cells, the best protocol is not direct in 11 cells and explicit pivot is worst in 10. We argue that global evaluation papers should report judge protocol, per-language alignment, same-item protocol shifts, calibration behavior, parse rates, and token cost instead of a single aggregate judge score.
+LLM-as-a-judge evaluation is increasingly used to score open-ended model outputs, but multilingual evaluation often hides a consequential implementation choice: which language the judge sees, which language the rubric uses, and whether non-English examples are translated into English before judging. We study this \emph{protocol sensitivity} using SEAHORSE multilingual summarization ratings, source-grounded XLSum examples, and a WMT MQM translation-quality contrast. Across 580 main-experiment base examples and 2,560 judge responses, a \texttt{gpt-4o-mini} judge gives materially different scores under direct English-rubric judging, target-language rubrics, explicit English-pivot judging, and bilingual rubrics. The largest shifts occur on target-language form dimensions: Vietnamese grammar scores differ by 1.20 points on a 1--5 scale between target-language-rubric and English-pivot protocols. English pivoting is not a safe default: for Turkish comprehensibility it significantly reduces alignment with human labels, and follow-up experiments with \texttt{gpt-4.1-mini}, \texttt{gpt-5.4-mini}, and \texttt{gpt-5.5} reproduce the key failure. A small evidence-preserving bilingual mitigation recovers the worst \texttt{gpt-5.5} pivot failures. Source-grounded semantics and WMT MQM show smaller or more model-dependent effects, clarifying the boundary of the claim. Across 17 main-experiment task/language cells, the best protocol is not direct in 11 cells and explicit pivot is worst in 10. We argue that global evaluation papers should report judge protocol, per-language alignment, same-item protocol shifts, calibration behavior, parse rates, and token cost instead of a single aggregate judge score.
 \end{abstract}
 
 \section{Introduction}
@@ -51,8 +51,8 @@ We study three settings with existing human labels. First, we use SEAHORSE candi
 Our contributions are:
 \begin{itemize}
     \item We define \emph{protocol sensitivity} for multilingual LLM-as-a-judge evaluation and operationalize it with same-item score shifts, by-language human alignment, language gaps, calibration diagnostics, parse rates, and token cost.
-    \item We release a benchmark scaffold covering 580 main base examples across candidate-quality, source-grounded semantic, and WMT MQM translation-quality settings, plus a 200-item stronger-judge audit.
-    \item We show that English pivoting is not a safe default: it significantly hurts Turkish comprehensibility in the main run and the same failure mode appears in a stronger-judge audit.
+    \item We release a benchmark scaffold covering 580 main base examples across candidate-quality, source-grounded semantic, and WMT MQM translation-quality settings, plus stronger-judge, modern-judge, and mitigation experiments.
+    \item We show that English pivoting is not a safe default: it significantly hurts Turkish comprehensibility in the main run, and the same failure mode appears under stronger and current frontier judges.
     \item We provide a Global Judge Reporting Card that makes multilingual judge protocols auditable rather than hidden prompt details.
 \end{itemize}
 
@@ -74,10 +74,10 @@ Summarization and translation evaluation illustrate why protocol choice matters.
 \subsection{Research Questions}
 
 We organize the experiments around four questions.
-\textbf{RQ1:} How much does the judge protocol change same-item scores and human alignment?
-\textbf{RQ2:} Are protocol effects larger for target-language form dimensions than for source-grounded semantic or reference-based translation-quality judgments?
-\textbf{RQ3:} Do stronger judges or threshold calibration remove the failure mode?
-\textbf{RQ4:} What should future multilingual LLM-judge papers report so that their conclusions are auditable?
+\textbf{Q1:} How much does the judge protocol change same-item scores and human alignment?
+\textbf{Q2:} Are protocol effects larger for target-language form dimensions than for source-grounded semantic or reference-based translation-quality judgments?
+\textbf{Q3:} Do stronger judges or threshold calibration remove the failure mode?
+\textbf{Q4:} What should future multilingual LLM-judge papers report so that their conclusions are auditable?
 
 \subsection{Datasets and Sampling}
 
@@ -90,11 +90,28 @@ SEAHORSE raw TSV files do not include source documents. To recover source-ground
 \paragraph{WMT MQM translation-quality contrast.}
 To test whether protocol sensitivity is equally severe for machine-translation evaluation, we sample 30 balanced examples per language pair from WMT MQM human-evaluation rows: \texttt{en-de}, \texttt{en-ru}, and \texttt{zh-en}. We use year-2022 rows and derive high/low labels from within-pair MQM-score quantiles. This gives 90 base examples. We run both reference-based judging (source, candidate, reference) and reference-free judging (source and candidate only). Each condition uses direct judging and explicit English-pivot judging for all pairs, plus target-language and bilingual rubrics for the two non-English target pairs, giving 600 WMT judge responses total.
 
-\paragraph{Stronger-judge audit.}
-To check whether the main pattern is only a cheap-judge artifact, we run \texttt{gpt-4.1-mini} on a stratified candidate-quality subset: 25 examples per language/dimension, 200 base examples, and 800 judge responses. We also run a targeted WMT reference-free audit on two cells where the main judge shows large or ambiguous protocol effects.
+\paragraph{Stronger-judge experiment.}
+To check whether the main pattern is only a cheap-judge artifact, we run \texttt{gpt-4.1-mini} on a stratified candidate-quality subset: 25 examples per language/dimension, 200 base examples, and 800 judge responses. We also run a targeted WMT reference-free experiment on two cells where the main judge shows large or ambiguous protocol effects.
 
-\input{tables/dataset_sampling_audit}
-\FloatBarrier
+% Inlined from paper/tables/dataset_sampling_audit.tex.
+\begin{table}[!htbp]
+\centering
+\caption{Dataset sampling summary for paper-facing item sets.}
+\label{tab:dataset_sampling_audit}
+\small
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrr}
+\toprule
+Run & Items & Langs & Dims & Pos & Neg & Source \\
+\midrule
+candidate n50 & 400 & 4 & 2 & 200 & 200 & 0\% \\
+candidate experiment n25 & 200 & 4 & 2 & 96 & 104 & 0\% \\
+semantic n30 & 90 & 3 & 1 & 45 & 45 & 100\% \\
+wmt n30 shared items & 90 & 3 & 1 & 45 & 45 & 100\% \\
+wmt ref-free experiment zh-en & 30 & 1 & 1 & 15 & 15 & 100\% \\
+wmt ref-free experiment en-de & 30 & 1 & 1 & 15 & 15 & 100\% \\
+\bottomrule
+\end{tabular*}
+\end{table}
 
 \subsection{Judge Protocols}
 
@@ -106,7 +123,7 @@ We report both alignment and diagnostic metrics. Alignment is measured with Spea
 \begin{equation}
     \Delta_{p,q}^{\mathrm{score}} = \frac{1}{n}\sum_{i=1}^{n} |s_{i,p} - s_{i,q}|.
 \end{equation}
-For paired protocol comparisons, we report item-level AUROC deltas with bootstrap intervals. We also report cross-language gaps, defined as the difference between the maximum and minimum per-language Spearman value under a fixed setting, post-hoc threshold calibration, JSON parse rate, returned token usage, and approximate API cost. Calibration uses small in-group calibration splits to choose a score threshold, then evaluates held-out balanced accuracy.
+For paired protocol comparisons, we report item-level AUROC deltas. We also report cross-language gaps, defined as the difference between the maximum and minimum per-language Spearman value under a fixed setting, post-hoc threshold calibration, JSON parse rate, returned token usage, and approximate API cost. Calibration uses small in-group calibration splits to choose a score threshold, then evaluates held-out balanced accuracy.
 
 \section{Results}
 
@@ -114,36 +131,151 @@ For paired protocol comparisons, we report item-level AUROC deltas with bootstra
 
 Table~\ref{tab:candidate_protocol_sensitivity} summarizes the strongest candidate-quality findings. Protocol shifts are large on the same item, especially for target-language form dimensions. For Vietnamese grammar, target-language-rubric and English-pivot scores differ by 1.20 points on a 1--5 scale on average. For Vietnamese comprehensibility, bilingual and English-pivot scores differ by 0.96 points.
 
-These shifts are not merely changes in score scale. In Turkish comprehensibility, direct judging reaches Spearman 0.603 and AUROC 0.836, while explicit English pivot drops to Spearman 0.331 and AUROC 0.686. The paired AUROC delta for pivot minus direct is -0.150, with 95\% bootstrap CI [-0.257, -0.055]. Thus a common workaround, translating into English before judging, can significantly reduce alignment with human labels.
+These shifts are not merely changes in score scale. In Turkish comprehensibility, direct judging reaches Spearman 0.60 and AUROC 0.84, while explicit English pivot drops to Spearman 0.33 and AUROC 0.69. The paired AUROC delta for pivot minus direct is -0.15. Thus a common workaround, translating into English before judging, can materially reduce alignment with human labels.
 
 Qualitative inspection suggests two mechanisms. In one Vietnamese human-negative comprehensibility item, target-language judging scores the original summary 2, while the English pivot ``Prepare materials'' is scored 5 because the translation is clear but has removed the target-language error signal. Conversely, in a Turkish human-positive comprehensibility item, direct, target-language, and bilingual protocols all score 5, but the pivot translation repeats the sentence and the pivot judge assigns 1. Translation can therefore both clean away real errors and introduce new artifacts.
 
-\input{tables/candidate_protocol_sensitivity}
-\FloatBarrier
+% Inlined from paper/tables/candidate_protocol_sensitivity.tex.
+\begin{table}[!htbp]
+\centering
+\caption{Candidate-quality protocol sensitivity. Protocol columns report Spearman / AUROC; ``Comp.'' names the paired comparison for $\Delta$AUROC.}
+\label{tab:candidate_protocol_sensitivity}
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llllllll}
+\toprule
+Cell & Direct & Target & Pivot & Bil. & Comp. & $\Delta$ & Shift \\
+\midrule
+tr comp. & 0.60 / 0.84 & 0.56 / 0.81 & 0.33 / 0.69 & 0.57 / 0.82 & Piv.-dir. & -0.15 & 0.62 \\
+vi comp. & 0.35 / 0.69 & 0.16 / 0.59 & 0.09 / 0.55 & 0.40 / 0.71 & Bil.-piv. & 0.17 & 0.96 \\
+vi gram. & 0.23 / 0.62 & 0.25 / 0.63 & 0.02 / 0.51 & 0.10 / 0.55 & Piv.-tgt. & -0.12 & 1.20 \\
+\bottomrule
+\end{tabular*}
+\end{table}
 
 \subsection{A Stronger Judge Does Not Remove the Failure Mode}
 
-The \texttt{gpt-4.1-mini} audit is bounded, so we do not treat its exact correlations as final. It is useful as a stronger-model failure-mode check. On Turkish comprehensibility, the stronger judge gives direct judging Spearman 0.729 / AUROC 0.910 and bilingual judging 0.796 / 0.946, but explicit pivot falls to 0.168 / 0.593. The paired AUROC delta for pivot minus direct is -0.317, and bilingual minus pivot is +0.353. The same pattern appears for Vietnamese grammar: direct judging reaches 0.564 / 0.814, explicit pivot drops to -0.052 / 0.471, and bilingual judging recovers to 0.491 / 0.769.
+The \texttt{gpt-4.1-mini} experiment is bounded, so we do not treat its exact correlations as final. It is useful as a stronger-model failure-mode check. On Turkish comprehensibility, the stronger judge gives direct judging Spearman 0.73 / AUROC 0.91 and bilingual judging 0.80 / 0.95, but explicit pivot falls to 0.17 / 0.59. The paired AUROC delta for pivot minus direct is -0.32, and bilingual minus pivot is +0.35. The same pattern appears for Vietnamese grammar: direct judging reaches 0.56 / 0.81, explicit pivot drops to -0.05 / 0.47, and bilingual judging recovers to 0.49 / 0.77.
 
-\input{tables/stronger_judge_audit}
-\FloatBarrier
+% Inlined from paper/tables/stronger_judge_audit.tex.
+\begin{table}[!htbp]
+\centering
+\caption{Stronger-judge experiment on a stratified n=25-per-cell subset.}
+\label{tab:stronger_judge_audit}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llllll}
+\toprule
+Cell & Direct & Pivot & Bil. & Piv.-Dir. $\Delta$ & Bil.-Piv. $\Delta$ \\
+\midrule
+tr comp. & 0.73 / 0.91 & 0.17 / 0.59 & 0.80 / 0.95 & -0.32 & 0.35 \\
+vi gram. & 0.56 / 0.81 & -0.05 / 0.47 & 0.49 / 0.77 & -0.34 & 0.30 \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\subsection{Modern Frontier Judges Preserve the Core Failure}
+
+We next run a focused modern-judge experiment on the highest-sensitivity cells from the \texttt{gpt-4.1-mini} experiment: Turkish comprehensibility, Vietnamese comprehensibility, Vietnamese grammar, and \texttt{zh-en} WMT reference-free translation quality. The experiment uses \texttt{gpt-5.4-mini} as a current low-cost judge and \texttt{gpt-5.5} as a current frontier judge. It also adds one constructive mitigation, \textbf{P4 evidence-preserving bilingual judging}, which keeps the original target-language candidate visible and requires a short original-language evidence quote before scoring.
+
+Table~\ref{tab:modern_judge_audit} shows that the English-pivot failure is not an artifact of the older mini judge. Under \texttt{gpt-5.5}, explicit pivot is still much worse than direct judging on Turkish comprehensibility (paired AUROC delta -0.26) and Vietnamese grammar (-0.47), and WMT \texttt{zh-en} reference-free judging also favors direct source-visible evaluation (-0.18). The mitigation is useful where pivot loses the relevant target-language evidence: P4 improves over explicit pivot by +0.27 AUROC on Turkish comprehensibility and +0.50 on Vietnamese grammar, while remaining competitive with direct and bilingual judging. This makes the paper's practical recommendation sharper: for target-language form dimensions, keep original-language evidence visible and ask the judge to cite it.
+
+% Inlined from paper/tables/modern_judge_audit.tex.
+\begin{table}[!htbp]
+\centering
+\caption{Modern-judge experiment and evidence-preserving mitigation. AUROC is computed within each n-per-protocol cell; deltas are paired AUROC differences. The WMT rows use only direct and pivot protocols.}
+\label{tab:modern_judge_audit}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llrrrrrr}
+\toprule
+Cell & Judge & Direct & Pivot & Bil. & P4 & Piv.-Dir. & P4-Piv. \\
+\midrule
+tr comp. & gpt-4.1-mini & 0.91 & 0.59 & 0.95 & -- & -0.32 & -- \\
+vi comp. & gpt-4.1-mini & 0.79 & 0.62 & 0.75 & -- & -0.17 & -- \\
+vi gram. & gpt-4.1-mini & 0.81 & 0.47 & 0.77 & -- & -0.34 & -- \\
+tr comp. & gpt-5.4-mini & 0.95 & 0.65 & 0.88 & -- & -0.30 & -- \\
+vi comp. & gpt-5.4-mini & 0.78 & 0.68 & 0.81 & -- & -0.09 & -- \\
+vi gram. & gpt-5.4-mini & 0.84 & 0.44 & 0.82 & -- & -0.40 & -- \\
+tr comp. & gpt-5.5 & 0.99 & 0.73 & 0.98 & 1.00 & -0.26 & 0.27 \\
+vi comp. & gpt-5.5 & 0.81 & 0.69 & 0.84 & 0.83 & -0.13 & 0.14 \\
+vi gram. & gpt-5.5 & 0.82 & 0.35 & 0.81 & 0.85 & -0.47 & 0.50 \\
+\midrule
+WMT zh-en & gpt-4.1-mini & 0.77 & 0.64 & -- & -- & -0.14 & -- \\
+WMT zh-en & gpt-5.4-mini & 0.74 & 0.61 & -- & -- & -0.13 & -- \\
+WMT zh-en & gpt-5.5 & 0.80 & 0.62 & -- & -- & -0.18 & -- \\
+\bottomrule
+\end{tabular*}
+\end{table}
 
 \subsection{Semantic and MT Settings Clarify the Boundary}
 
-The source-grounded main-ideas setting gives a different but complementary pattern. Protocol shifts are smaller than for grammar/form dimensions, which is expected: semantic content can often survive translation better than grammar or fluency. Still, explicit pivot is not uniformly best. For Spanish main ideas, explicit pivot performs best. For Turkish, bilingual judging is best. For Vietnamese, all protocols are weak, and explicit pivot is chance-level. Paired comparisons reinforce this language dependence: for Turkish, bilingual minus pivot AUROC delta is +0.124 with 95\% CI [0.000, 0.275]; for Vietnamese, bilingual minus pivot AUROC delta is +0.107 with 95\% CI [0.013, 0.220].
+The source-grounded main-ideas setting gives a different but complementary pattern. Protocol shifts are smaller than for grammar/form dimensions, which is expected: semantic content can often survive translation better than grammar or fluency. Still, explicit pivot is not uniformly best. For Spanish main ideas, explicit pivot performs best. For Turkish, bilingual judging is best. For Vietnamese, all protocols are weak, and explicit pivot is chance-level. Paired comparisons reinforce this language dependence: bilingual minus pivot AUROC delta is +0.12 for Turkish and +0.11 for Vietnamese.
 
-The WMT MQM contrast is intentionally smaller and narrower than the summarization runs, but it is important for claim boundaries. Reference-based translation-quality judging shows smaller direct-vs-pivot shifts and no significant paired AUROC deltas. Reference-free MT judging surfaces stronger \texttt{gpt-4o-mini} protocol effects: for \texttt{zh-en}, direct judging reaches 0.595 / 0.820, while explicit pivot drops to 0.187 / 0.600. A targeted \texttt{gpt-4.1-mini} audit preserves the \texttt{zh-en} direct-over-pivot direction but does not reproduce the \texttt{en-de} bilingual-over-pivot gain. Thus English pivoting is risky for target-language form and some source-grounded semantic settings, while the WMT evidence is best treated as protocol/model-sensitivity evidence rather than a stable global protocol ranking.
+The WMT MQM contrast is intentionally smaller and narrower than the summarization runs, but it is important for claim boundaries. Reference-based translation-quality judging shows smaller direct-vs-pivot shifts. Reference-free MT judging surfaces stronger \texttt{gpt-4o-mini} protocol effects: for \texttt{zh-en}, direct judging reaches 0.60 / 0.82, while explicit pivot drops to 0.19 / 0.60. A targeted \texttt{gpt-4.1-mini} experiment preserves the \texttt{zh-en} direct-over-pivot direction but does not reproduce the \texttt{en-de} bilingual-over-pivot gain. Thus English pivoting is risky for target-language form and some source-grounded semantic settings, while the WMT evidence is best treated as protocol/model-sensitivity evidence rather than a stable global protocol ranking.
 
-\input{tables/semantic_main_ideas}
-\input{tables/wmt_translation_quality}
-\FloatBarrier
+% Inlined from paper/tables/semantic_main_ideas.tex.
+\begin{table}[!htbp]
+\centering
+\caption{Source-grounded XLSum main-ideas alignment by protocol. Values are Spearman / AUROC.}
+\label{tab:semantic_main_ideas}
+\small
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llllll}
+\toprule
+Lang. & Best & Best S/A & Direct & Pivot & Bil. \\
+\midrule
+es-ES & P2 pivot & 0.51 / 0.77 & 0.49 / 0.76 & 0.51 / 0.77 & 0.43 / 0.72 \\
+tr & P3 bil. & 0.59 / 0.79 & 0.46 / 0.74 & 0.34 / 0.67 & 0.59 / 0.79 \\
+vi & P3 bil. & 0.19 / 0.61 & 0.14 / 0.58 & 0.00 / 0.50 & 0.19 / 0.61 \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+% Inlined from paper/tables/wmt_translation_quality.tex.
+\begin{table}[!htbp]
+\centering
+\caption{WMT MQM translation-quality protocol extension. Values are Spearman / AUROC; protocol names are abbreviated.}
+\label{tab:wmt_translation_quality}
+\footnotesize
+\setlength{\tabcolsep}{2pt}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lllllllll}
+\toprule
+Set. & Pair & Best & Best S/A & Direct & Target & Pivot & Bil. & Piv.-Dir. \\
+\midrule
+Ref. & en-de & P3 bil. & 0.47 / 0.69 & 0.39 / 0.67 & 0.32 / 0.60 & 0.40 / 0.68 & 0.47 / 0.69 & 0.00 \\
+Ref. & en-ru & P1 target & 0.32 / 0.65 & 0.16 / 0.57 & 0.32 / 0.65 & 0.13 / 0.56 & 0.16 / 0.58 & -0.01 \\
+Ref. & zh-en & P0 direct & 0.35 / 0.69 & 0.35 / 0.69 & n/a & 0.30 / 0.67 & n/a & -0.02 \\
+Free & en-de & P3 bil. & 0.68 / 0.84 & 0.51 / 0.74 & 0.48 / 0.74 & 0.44 / 0.71 & 0.68 / 0.84 & -0.03 \\
+Free & en-ru & P1 target & 0.20 / 0.60 & 0.02 / 0.51 & 0.20 / 0.60 & 0.04 / 0.52 & 0.18 / 0.59 & 0.01 \\
+Free & zh-en & P0 direct & 0.60 / 0.82 & 0.60 / 0.82 & n/a & 0.19 / 0.60 & n/a & -0.22 \\
+\bottomrule
+\end{tabular*}
+\end{table}
 
 \subsection{No Single Protocol Dominates}
 
-Table~\ref{tab:protocol_instability_summary} aggregates instability rather than declaring a universal winner. Across 17 non-audit task/language cells, the best AUROC protocol is not direct in 11 cells, explicit pivot is the worst protocol in 10 cells, and 6 cells have at least one paired AUROC delta with a bootstrap CI excluding zero. The stronger audits show the same qualitative point while tightening the WMT claim boundary: protocol choice is an experimental factor to report, not a nuisance prompt detail to hide.
+Table~\ref{tab:protocol_instability_summary} aggregates instability rather than declaring a universal winner. Across 17 main-experiment task/language cells, the best AUROC protocol is not direct in 11 cells, explicit pivot is the worst protocol in 10 cells, and 6 cells have at least one strongly supported paired AUROC change. The stronger experiments show the same qualitative point while tightening the WMT claim boundary: protocol choice is an experimental factor to report, not a nuisance prompt detail to hide.
 
-\input{tables/protocol_instability_summary}
-\FloatBarrier
+% Inlined from paper/tables/protocol_instability_summary.tex.
+\begin{table}[!htbp]
+\centering
+\caption{Protocol-instability summary by run. AUROC range is best minus worst protocol within a language/dimension cell.}
+\label{tab:protocol_instability_summary}
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrrrr}
+\toprule
+Run & Cells & Med. & Max & $\geq$.10 & Best$\neq$dir. & Piv. worst & Sig. & Shift \\
+\midrule
+candidate n50 & 8 & 0.07 & 0.17 & 3/8 & 4/8 & 4/8 & 2/8 & 1.20 \\
+semantic n30 & 3 & 0.11 & 0.12 & 2/3 & 3/3 & 2/3 & 1/3 & 0.70 \\
+wmt reference n30 & 3 & 0.08 & 0.09 & 0/3 & 2/3 & 2/3 & 0/3 & 0.53 \\
+wmt ref-free n30 & 3 & 0.13 & 0.22 & 2/3 & 2/3 & 2/3 & 3/3 & 0.70 \\
+cand. exp. n25 & 8 & 0.16 & 0.35 & 7/8 & 5/8 & 4/8 & 4/8 & 1.16 \\
+wmt free exp. & 2 & 0.08 & 0.14 & 1/2 & 1/2 & 1/2 & 0/2 & 0.67 \\
+\bottomrule
+\end{tabular*}
+\end{table}
 
 \section{Analysis and Recommendations}
 
@@ -154,44 +286,31 @@ The strongest failures occur when the human label depends on target-language for
 Bilingual judging often improves over explicit pivot in our highest-sensitivity cells, but it is not universally best. This suggests that multilingual evaluation should not replace one hidden default with another. Instead, papers should report multiple protocols on a small shared subset and state which protocol is used for the main score.
 
 \paragraph{Aggregate scores hide language gaps.}
-Protocol choice also changes disparity across languages. In candidate-quality comprehensibility, explicit pivot has a Spearman language gap of 0.625, from Vietnamese 0.086 to English 0.711. Bilingual judging reduces the same gap to 0.302. In source-grounded main ideas, explicit pivot again has the largest language gap, 0.514, from Vietnamese 0.000 to Spanish 0.514. A single aggregate judge score would hide these failures.
+Protocol choice also changes disparity across languages. In candidate-quality comprehensibility, explicit pivot has a Spearman language gap of 0.63, from Vietnamese 0.09 to English 0.71. Bilingual judging reduces the same gap to 0.30. In source-grounded main ideas, explicit pivot again has the largest language gap, 0.51, from Vietnamese 0.00 to Spanish 0.51. A single aggregate judge score would hide these failures.
 
 \paragraph{Calibration diagnoses score compression but does not solve protocol sensitivity.}
 Post-hoc threshold calibration helps most in the source-grounded semantic setting, where judge scores are compressed low: with balanced human labels, the fixed score $\geq 4$ threshold marks only 8.3\% of examples as good, and the modal best in-group threshold is 2. In candidate-quality and reference-based WMT, calibration is neutral or slightly negative on average. Calibration is therefore useful as a score-threshold diagnostic, not a universal repair.
 
 \paragraph{Repeatability is not the main explanation.}
-The historical n=20 pilot and the n=50 main run overlap on 42 original-text prompt calls with identical prompt text. Across these repeated calls, exact score agreement is 92.9\%, mean absolute score delta is 0.071, and the maximum score delta is 1. This is much smaller than the main protocol shifts, such as 0.96 for Vietnamese comprehensibility and 1.20 for Vietnamese grammar. By contrast, repeated explicit-pivot prompt IDs with regenerated translation text show lower agreement, suggesting that translation-pivot workflows add an additional source of pipeline volatility.
+The historical n=20 pilot and the n=50 main run overlap on 42 original-text prompt calls with identical prompt text. Across these repeated calls, exact score agreement is 92.9\%, mean absolute score delta is 0.07, and the maximum score delta is 1. This is much smaller than the main protocol shifts, such as 0.96 for Vietnamese comprehensibility and 1.20 for Vietnamese grammar. By contrast, repeated explicit-pivot prompt IDs with regenerated translation text show lower agreement, suggesting that translation-pivot workflows add an additional source of pipeline volatility.
 
 \paragraph{Global Judge Reporting Card.}
 We recommend that multilingual LLM-as-a-judge papers report: judge model and version; prompt/rubric language; whether source, candidate, or reference texts were translated; whether target-language form dimensions were judged in the original language; per-language human alignment; same-item protocol-shift metrics; language gaps for each protocol; calibration split size and held-out effect; parse failure rate; returned token usage; and approximate cost per 1,000 judgments. Token usage is the stable accounting quantity; dollar values should be refreshed against current provider pricing before camera-ready release.
 
 \section{Limitations}
 
-The evidence is deliberately bounded. All main judge calls use OpenAI models, and the stronger audits use another OpenAI model rather than an independent model family. Target-language rubric translations are pragmatic pilot translations, not native-speaker validated. The source-grounded setting covers one semantic dimension and three non-English languages. The WMT MQM contrast is small, covers one year and three language pairs, adds target/bilingual rubrics only for the two non-English target pairs, and uses quantile-derived binary labels from continuous MQM scores. The targeted WMT stronger-judge audit covers only two reference-free cells at n=30, so it is a robustness check rather than a definitive model-family comparison. The reference-free WMT condition reuses the same MQM-derived labels, so it is a protocol stress test rather than a new human annotation target. SEAHORSE labels are binary yes/no labels for each dimension, while LLM judges produce 1--5 scores; thresholding and calibration are therefore part of the evaluation design.
+The evidence is deliberately bounded. All main judge calls and all stronger/modern experiments use OpenAI-hosted models rather than an independent model family. Target-language rubric translations are pragmatic pilot translations, not native-speaker validated. The source-grounded setting covers one semantic dimension and three non-English languages. The WMT MQM contrast is small, covers one year and three language pairs, adds target/bilingual rubrics only for the two non-English target pairs, and uses quantile-derived binary labels from continuous MQM scores. The targeted WMT stronger-judge and modern-judge experiments are robustness checks rather than definitive model-family comparisons. The reference-free WMT condition reuses the same MQM-derived labels, so it is a protocol stress test rather than a new human annotation target. SEAHORSE labels are binary yes/no labels for each dimension, while LLM judges produce 1--5 scores; thresholding and calibration are therefore part of the evaluation design.
 
 \section{Conclusion}
 
 Multilingual LLM-as-a-judge evaluation is under-specified without the judge protocol. The same item can receive different scores depending on whether the judge sees original text, translated text, target-language instructions, or bilingual instructions. English-pivot judging can help in some semantic and reference-based settings, but it can also erase target-language evidence, introduce translation artifacts, and increase language gaps. We recommend that global benchmark builders report protocol sensitivity as a first-class evaluation result.
 
-\clearpage
+\begingroup
+\small
+\setlength{\bibsep}{2pt}
 \bibliographystyle{colm2026_conference}
 \bibliography{references}
+\endgroup
 
-\clearpage
-\appendix
-\section{Additional Diagnostics}
-
-The following tables are included for reproducibility. We omit generated heatmap figures from the manuscript TeX to keep the main paper layout stable; the figure files remain useful as repository artifacts and can be restored for a longer camera-ready version.
-
-\input{tables/prompt_inventory}
-\input{tables/wmt_ref_free_stronger_audit}
-\input{tables/repeatability_control}
-\input{tables/language_gaps}
-\input{tables/calibration_summary}
-\input{tables/calibration_learning_curve}
-\input{tables/score_threshold_diagnostic}
-\input{tables/run_inventory}
-\input{tables/api_usage_inventory}
-\input{tables/api_costs}
 
 \end{document}

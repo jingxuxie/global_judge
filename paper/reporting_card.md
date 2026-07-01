@@ -22,7 +22,7 @@ Use this checklist when reporting multilingual LLM-as-a-judge results.
 
 - Per-language alignment with human labels.
 - Per-dimension alignment with human labels.
-- Confidence intervals or bootstrap intervals.
+- Paired deltas or resampling diagnostics.
 - AUROC/accuracy threshold definition if binary labels are used.
 
 ## Protocol Sensitivity

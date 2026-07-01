@@ -1,4 +1,4 @@
-\begin{table}[t]
+\begin{table}[!htbp]
 \centering
 \caption{Research-question and contribution coverage matrix. Full artifact paths are provided in \texttt{data/analysis/rq\_contribution\_matrix.md}.}
 \label{tab:rq_contribution_matrix}
@@ -7,16 +7,16 @@
 \toprule
 Plan item & Coverage & Evidence summary & Claim boundary \\
 \midrule
-RQ1: judge reliability changes by language & covered & Language gaps are reported per protocol: candidate comprehensibility pivot Spearman gap 0.625; semantic pivot gap 0.514; WMT ref-free direct gap 0.572. & Per-language evidence is strong for current sampled languages, not a universal language ranking. \\
-RQ2: evaluation protocol changes the result & covered & Across 17 non-audit cells, best protocol is not direct in 11, pivot is worst in 10, 6 cells have a significant AUROC pair, and max same-item shift is 1.20. & Protocol sensitivity is the central claim; no single protocol is claimed globally optimal. \\
+RQ1: judge reliability changes by language & covered & Language gaps are reported per protocol: candidate comprehensibility pivot Spearman gap 0.63; semantic pivot gap 0.51; WMT ref-free direct gap 0.57. & Per-language evidence is strong for current sampled languages, not a universal language ranking. \\
+RQ2: evaluation protocol changes the result & covered & Across 17 main-experiment cells, best protocol is not direct in 11, pivot is worst in 10, 6 cells have a significant AUROC pair, and max same-item shift is 1.20. & Protocol sensitivity is the central claim; no single protocol is claimed globally optimal. \\
 RQ3: protocol effects differ by quality dimension/task & covered with contrast evidence & Max same-item shifts differ by setting: candidate-quality 1.20, semantic 0.70, WMT reference 0.53, WMT ref-free 0.70. & Dimension story is empirical and bounded; native form-sensitive dimensions remain the clearest risk case. \\
-RQ4: small human calibration set & covered as diagnostic & At 24 calibration examples, balanced-accuracy deltas are candidate -0.009, semantic 0.136, and WMT ref-free 0.076. & Calibration is framed as score-distribution diagnosis, not a universal repair. \\
-Contribution 1: GlobalJudge-ProtocolBench scaffold & covered for workshop scale & 580 main base items plus 200 candidate audit items and 60 targeted WMT audit subset rows; 3480 prompts across gpt-4.1-mini, gpt-4o-mini. & Scope is compact and intentionally bounded; larger model-family coverage is future work. \\
+RQ4: small human calibration set & covered as diagnostic & At 24 calibration examples, balanced-accuracy deltas are candidate -0.01, semantic 0.14, and WMT ref-free 0.08. & Calibration is framed as score-distribution diagnosis, not a universal repair. \\
+Contribution 1: GlobalJudge-ProtocolBench scaffold & covered for workshop scale & 580 main base items plus 200 candidate experiment items and 60 targeted WMT experiment subset rows; 3480 core prompts across gpt-4.1-mini, gpt-4o-mini; plus 795 modern/P4 follow-up prompts. & Scope is compact and intentionally bounded; larger model-family coverage is future work. \\
 Contribution 2: protocol-sensitivity metrics & covered & Tables report Spearman/AUROC, paired AUROC deltas, same-item shifts, language gaps, parse rate, token usage, and cost-per-1k judgments. & Kendall, Pearson, Brier score, and pairwise position-bias tests are not claimed. \\
 Contribution 3: calibration recipe & covered with caveat & Repeated stratified threshold calibration uses 50 trials per eligible group and budgets from 2 to 24 calibration examples; threshold diagnostic explains low semantic scores and high WMT ref-free scores. & Post-hoc threshold calibration is included; few-shot calibrated prompting is not run. \\
 Contribution 4: Global Judge Reporting Card & covered & Reporting card lists judge configuration, protocol surface, human alignment, protocol sensitivity, calibration, reproducibility, and cost fields. & Checklist is a recommended reporting practice, not a validated standard. \\
-Stability and rerun control & covered & 42 exact repeated prompts have 92.9\% exact agreement and mean delta 0.071; 14 pivot-pipeline repeats expose regenerated-translation volatility. & The pivot repeat is not a pure stochasticity control because prompt text changed. \\
-Cost, parsing, and release auditability & covered & 3480 judge calls, 100.0\% minimum parse rate, 1284667 total returned tokens across paper-facing runs, and \$0.3927 observed local cost estimate. & Token usage is stable; dollar costs should be refreshed against provider pricing before submission. \\
+Stability and rerun control & covered & 42 exact repeated prompts have 92.9\% exact agreement and mean delta 0.07; 14 pivot-pipeline repeats expose regenerated-translation volatility. & The pivot repeat is not a pure stochasticity control because prompt text changed. \\
+Cost, parsing, and release traceability & covered & 3480 judge calls, 100.0\% minimum parse rate, 1284667 total returned tokens across core paper-facing runs, \$0.39 core observed local cost estimate, and 795 modern/P4 follow-up prompts. & Token usage is stable; dollar costs should be refreshed against provider pricing before submission. \\
 \bottomrule
 \end{tabular}%
 }

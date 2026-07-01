@@ -1,14 +1,14 @@
-\begin{table}[t]
+\begin{table}[!htbp]
 \centering
-\caption{Targeted WMT reference-free stronger-judge audit with \texttt{gpt-4.1-mini}. Values are Spearman / AUROC.}
+\caption{Targeted WMT reference-free stronger-judge experiment with \texttt{gpt-4.1-mini}. Values are Spearman / AUROC.}
 \label{tab:wmt_ref_free_stronger_audit}
 \resizebox{\linewidth}{!}{%
-\begin{tabular}{lllllllll}
+\begin{tabular}{llllllll}
 \toprule
-Cell & Comparison & Protocol A & A Sp/AUROC & Protocol B & B Sp/AUROC & $\Delta$AUROC & 95\% CI & Shift \\
+Cell & Comparison & Protocol A & A Sp/AUROC & Protocol B & B Sp/AUROC & $\Delta$AUROC & Shift \\
 \midrule
-zh-en ref-free & Pivot - direct & Direct & 0.503 / 0.773 & Pivot & 0.254 / 0.636 & -0.138 & [-0.346, 0.067] & 0.667 \\
-en-de ref-free & Bilingual - pivot & Pivot & 0.563 / 0.784 & Bilingual & 0.503 / 0.760 & -0.024 & [-0.086, 0.016] & 0.200 \\
+zh-en ref-free & Pivot - direct & Direct & 0.50 / 0.77 & Pivot & 0.25 / 0.64 & -0.14 & 0.67 \\
+en-de ref-free & Bilingual - pivot & Pivot & 0.56 / 0.78 & Bilingual & 0.50 / 0.76 & -0.02 & 0.20 \\
 \bottomrule
 \end{tabular}%
 }
